@@ -147,11 +147,23 @@ mount_mirrors() {
 }
 
 # Credits
-ui_print "**************************************"
-ui_print "*       Performance of Sadness       *"
-ui_print "*          By AkasTKzume69           *"
-ui_print "**************************************"
-ui_print " "
+# ╔══════════════════════════════════════════════════════════╗
+# ║              Performance of Sadness Installer             ║
+# ╚══════════════════════════════════════════════════════════╝
+
+ui_print ""
+ui_print "╔══════════════════════════════════════════════════════╗"
+ui_print "║                                                      ║"
+ui_print "║     💠 Performance of Sadness - Module Installer 💠   ║"
+ui_print "║                by @AkasTKzume69                      ║"
+ui_print "║                                                      ║"
+ui_print "╚══════════════════════════════════════════════════════╝"
+ui_print ""
+sleep 0.4
+ui_print "→ Preparing environment..."
+sleep 0.4
+ui_print "→ Checking compatibility..."
+sleep 0.4
 
 # Check for min/max api version
 [ -z $MINAPI ] || { [ $API -lt $MINAPI ] && abort "! Your system API of $API is less than the minimum api of $MINAPI! Aborting!"; }
@@ -222,7 +234,8 @@ if ! $BOOTMODE; then
 fi
 
 # Extract files
-ui_print "- Extracting module files"
+ui_print "→ Extracting required files..."
+sleep 0.4
 unzip -o "$ZIPFILE" -x 'META-INF/*' 'common/functions.sh' -d $MODPATH >&2
 [ -f "$MODPATH/common/addon.tar.xz" ] && tar -xf $MODPATH/common/addon.tar.xz -C $MODPATH/common 2>/dev/null
 
@@ -256,7 +269,8 @@ if [ -f $INFO ]; then
 fi
 
 ### Install
-ui_print "- Installing"
+ui_print "→ Applying system modifications..."
+sleep 0.4
 
 [ -f "$MODPATH/common/install.sh" ] && . $MODPATH/common/install.sh
 
@@ -300,7 +314,8 @@ fi
 
 # Set permissions
 ui_print " "
-ui_print "- Setting Permissions"
+ui_print "→ Finalizing installation..."
+sleep 0.4
 set_perm_recursive $MODPATH 0 0 0755 0644
 for i in /system/vendor /vendor /system/vendor/app /vendor/app /system/vendor/etc /vendor/etc /system/odm/etc /odm/etc /system/vendor/odm/etc /vendor/odm/etc /system/vendor/overlay /vendor/overlay; do
   if [ -d "$MODPATH$i" ] && [ ! -L "$MODPATH$i" ]; then
@@ -318,4 +333,14 @@ done
 set_permissions
 
 # Complete install
+ui_print ""
+ui_print "✅ Module installed successfully!"
+ui_print "🔁 Please reboot your device to activate optimizations."
+ui_print ""
+ui_print "────────────────────────────────────────────────────────"
+ui_print "  ⚙️  Thank you for installing Performance of Sadness"
+ui_print "      • Firmware-based optimization module             "
+ui_print "      • Tuned for stability, efficiency, and speed     "
+ui_print "────────────────────────────────────────────────────────"
+ui_print ""
 cleanup

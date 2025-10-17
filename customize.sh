@@ -36,6 +36,24 @@ REPLACE_EXAMPLE="
 
 # Construct your own list here
 REPLACE="
+/system/vendor/etc/thermal-4k.conf
+/system/vendor/etc/thermal-arvr.conf
+/system/vendor/etc/thermal-camera.conf
+/system/vendor/etc/thermal-chg-only.conf
+/system/vendor/etc/thermal-class0.conf
+/system/vendor/etc/thermal-engine.conf
+/system/vendor/etc/thermal-extreme.conf
+/system/vendor/etc/thermal-high.conf
+/system/vendor/etc/thermal-map.conf
+/system/vendor/etc/thermal-mgame.conf
+/system/vendor/etc/thermal-nevigation.conf
+/system/vendor/etc/thermal-nolimits.conf
+/system/vendor/etc/thermal-normal.conf
+/system/vendor/etc/thermal-phone.conf
+/system/vendor/etc/thermal-tgame.conf
+/system/vendor/etc/thermal-video.conf
+/system/vendor/etc/thermal-youtube.conf
+/system/vendor/etc/thermal-devices.conf
 "
 
 ##########################################################################################
@@ -59,6 +77,22 @@ set_permissions() {
   
   # set_perm $MODPATH/system/lib/libart.so 0 0 0644
   # set_perm /data/local/tmp/file.txt 0 0 644
+  set_perm  $MODPATH/system/vendor/etc/thermal-4k.conf       0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/thermal-arvr.conf       0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/thermal-camera.conf       0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/thermal-chg-only.conf       0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/thermal-class0.conf       0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/thermal-engine.conf       0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/thermal-extreme.conf       0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/thermal-high.conf       0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/thermal-map.conf       0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/thermal-nolimits.conf       0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/thermal-normal.conf       0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/thermal-phone.conf       0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/thermal-tgame.conf       0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/thermal-video.conf       0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/thermal-youtube.conf       0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/thermald-devices.conf       0       0       0644
 }
 
 ##########################################################################################

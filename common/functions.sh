@@ -148,7 +148,8 @@ mount_mirrors() {
 
 # Credits
 ui_print "**************************************"
-ui_print "*   MMT Extended by Zackptg5 @ XDA   *"
+ui_print "*       Performance of Sadness       *"
+ui_print "*          By AkasTKzume69           *"
 ui_print "**************************************"
 ui_print " "
 

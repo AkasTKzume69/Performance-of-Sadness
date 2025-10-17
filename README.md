@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/AkasTKzume69Performance-of-Sadness/master/assert/beluga.png" />
+<img src="https://raw.githubusercontent.com/AkasTKzume69Performance-of-Sadness/master/assert/logo.png" />
 
 <h2 align="center">Performance of Sadness</h2>
 

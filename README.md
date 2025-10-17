@@ -9,26 +9,7 @@
       alt="_time_stamp_" /></div>
 
 <div align="center">
-  <strong>MMT Extended is the spiritual successor of Unity and makes magisk module creation easy. Instructions in the 
-    <h3><a href="https://github.com/Zackptg5/MMT-Extended/wiki">Wiki</a></h3><h4>Also supports KSU</h4>
-</div>
+  <strong>This module optimizes the device to reach its full performance potential by removing unnecessary limitations while maintaining efficient battery consumption.
 
-<div align="center">
-  <h3>
-    <a href="https://github.com/Zackptg5/MMT-Extended">
-      Source Code
-    </a>
-    <span> | </span>
-    <a href="https://github.com/Zackptg5/MMT-Extended-Addons">
-      Addons Repository
-    </a>
-    <span> | </span>
-    <a href="https://forum.xda-developers.com/apps/magisk/magisk-module-template-extended-mmt-ex-t4029819">
-      XDA
-    </a>
-  </h3>
+Built on deep firmware-level analysis, it modifies essential system scripts to enhance stability, responsiveness, and performance. The module is actively maintained by the developer to ensure compatibility and reliability across updates. 
 </div>
-
-### Usage
-- [Follow the directions here (DO NOT FORK)](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template)
-- Then follow instructions in [Wiki](https://github.com/Zackptg5/MMT-Extended/wiki)

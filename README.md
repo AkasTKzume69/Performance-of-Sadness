@@ -23,11 +23,9 @@
 
 <div align="center">
   <h3>
-    <a href="https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/changelog.md">Changelog</a>
+    <a href="https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/changelog.md">Full Changelog</a>
     <span> | </span>
     <a href="https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/installation.md">Installation</a>
-    <span> | </span>
-    <a href="https://sourceforge.net/projects/akastkzume-files/">Download</a>
     <span> | </span>
     <a href="https://t.me/AkasTKzumeOFFICIAL">Support Group</a>
   </h3>

@@ -13,19 +13,19 @@
 - Please do some research if you have any concerns about features included in this file before installing or flashing it! You are choosing to make these modifications, and if you point the finger at me for messing up your device, I will laugh at you.
 <div align="center">
   <h3>
-    <a href="https://github.com/AkasTKzume69/Beluga-Magisk-Module-Realme-3-3i/blob/master/changelog.md">
+    <a href="https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/changelog.md">
       Changelog
     </a>
     <span> | </span>
-    <a href="https://github.com/AkasTKzume69/Beluga-Magisk-Module-Realme-3-3i/blob/master/installation.md">
+    <a href="https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/installation.md">
       Installation and Guide
     </a>
     <span> | </span>
-    <a href="https://sourceforge.net/projects/akastkzume-files/files/Beluga%20Magisk%20Module%20Realme%203-3i/">
+    <a href="https://sourceforge.net/projects/akastkzume-files/">
       Download
     </a>
     <span> | </span>
-    <a href="https://t.me/belugarealme3official">
+    <a href="https://t.me/AkasTKzumeOFFICIAL">
       Support Group
     </a>
   </h3>

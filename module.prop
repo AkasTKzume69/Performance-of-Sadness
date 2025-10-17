@@ -1,7 +1,7 @@
-id=MMT-Ex
-name=Magisk Module Template Extended
-version=v3.7
-versionCode=19
-author=Zackptg5
-description=Magisk Module Template Extended
-updateJson=https://raw.githubusercontent.com/Zackptg5/MMT-Extended/master/update.json
+id=performance-of-sadness
+name=Performance of Sadness
+version=V1
+versionCode=20251017
+author=AkasTKzume
+description=Only for Redmi Note 11 Pro 5G(Veux) and Poco X4 Pro 5G(Peux).
+updateJson=https://raw.githubusercontent.com/AkasTKzume69/Performance-of-Sadness/master/update.json

@@ -58,10 +58,8 @@ set_permissions() {
   
   # set_perm $MODPATH/system/lib/libart.so 0 0 0644
   # set_perm /data/local/tmp/file.txt 0 0 644
-  set_perm  $MODPATH/system/vendor/etc/thermal-4k.conf       0       0       0644
   set_perm  $MODPATH/system/vendor/etc/thermal-arvr.conf       0       0       0644
   set_perm  $MODPATH/system/vendor/etc/thermal-camera.conf       0       0       0644
-  set_perm  $MODPATH/system/vendor/etc/thermal-chg-only.conf       0       0       0644
   set_perm  $MODPATH/system/vendor/etc/thermal-class0.conf       0       0       0644
   set_perm  $MODPATH/system/vendor/etc/thermal-engine.conf       0       0       0644
   set_perm  $MODPATH/system/vendor/etc/thermal-extreme.conf       0       0       0644
@@ -73,7 +71,6 @@ set_permissions() {
   set_perm  $MODPATH/system/vendor/etc/thermal-tgame.conf       0       0       0644
   set_perm  $MODPATH/system/vendor/etc/thermal-video.conf       0       0       0644
   set_perm  $MODPATH/system/vendor/etc/thermal-youtube.conf       0       0       0644
-  set_perm  $MODPATH/system/vendor/etc/thermald-devices.conf       0       0       0644
 }
 
 ##########################################################################################

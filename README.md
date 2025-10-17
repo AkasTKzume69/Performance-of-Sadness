@@ -1,48 +1,45 @@
-<img src="https://raw.githubusercontent.com/AkasTKzume69/Performance-of-Sadness/master/assert/banner.png" />
+<p align="center">
+  <img src="https://raw.githubusercontent.com/AkasTKzume69/Performance-of-Sadness/master/assert/banner.png" alt="Performance of Sadness Banner" width="100%">
+</p>
 
-<h2 align="center">Performance of Sadness</h2>
+<h1 align="center">Performance of Sadness</h1>
 
-- This module optimizes the device to reach its full performance potential by removing unnecessary limitations while maintaining efficient battery consumption.
-- Built on deep firmware-level analysis, it modifies essential system scripts to enhance stability, responsiveness, and performance. The module is actively maintained by the developer to ensure compatibility and reliability across updates. 
+<p align="center">
+  This module optimizes your device to reach its full performance potential by removing unnecessary limitations while maintaining efficient battery consumption.<br><br>
+  Built on deep firmware-level analysis, it modifies essential system scripts to enhance stability, responsiveness, and overall performance.<br>
+  The module is actively maintained by the developer to ensure compatibility and reliability across updates.
+</p>
 
-<h2 align="center">Warning⚠️
-</h2>
+---
 
-- Your warranty is now void.
-- I am not responsible for bricked devices, dead SD cards, thermonuclear war, or you getting fired because the alarm app failed.
-- Please do some research if you have any concerns about features included in this file before installing or flashing it! You are choosing to make these modifications, and if you point the finger at me for messing up your device, I will laugh at you.
+<h2 align="center">⚠️ Warning</h2>
+
+- Your warranty is now **void**.
+- I am **not responsible** for bricked devices, dead SD cards, thermonuclear war, or you getting fired because your alarm app failed.
+- Please do your own research before installing or flashing this module.
+- You are choosing to make these modifications; if you point the finger at me for messing up your device — I will laugh at you.
+
+---
+
 <div align="center">
   <h3>
-    <a href="https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/changelog.md">
-      Changelog
-    </a>
+    <a href="https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/changelog.md">Changelog</a>
     <span> | </span>
-    <a href="https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/installation.md">
-      Installation
-    </a>
+    <a href="https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/installation.md">Installation</a>
     <span> | </span>
-    <a href="https://sourceforge.net/projects/akastkzume-files/">
-      Download
-    </a>
+    <a href="https://sourceforge.net/projects/akastkzume-files/">Download</a>
     <span> | </span>
-    <a href="https://t.me/AkasTKzumeOFFICIAL">
-      Support Group
-    </a>
+    <a href="https://t.me/AkasTKzumeOFFICIAL">Support Group</a>
   </h3>
 </div>
 
+---
+
 <div align="center">
-  <!-- Latest Version -->
-    <img src="https://img.shields.io/badge/Latest Version-V1-green.svg?longCache=true&style=For-The-Badge"
-      alt="Version" />
-  <!-- Last Updated -->
-    <img src="https://img.shields.io/badge/Last Updated-October 17, 2025-blue.svg?longCache=true&style=For-The-Badge"
-      alt="_time_stamp_" />
-      <div align="center">
-  <!-- Min Magisk -->
-    <img src="https://img.shields.io/badge/MinMagisk-20.4-red.svg?longCache=true&style=flat-square"
-      alt="_time_stamp_" />
-  <!-- Min KSU -->
-    <img src="https://img.shields.io/badge/MinKernelSU-0.6.6-red.svg?longCache=true&style=flat-square"
-      alt="_time_stamp_" />
+  <!-- Shields -->
+  <img src="https://img.shields.io/badge/Latest_Version-V1_20251017-green?style=for-the-badge" alt="Version"/>
+  <img src="https://img.shields.io/badge/Last_Updated-October_17,_2025-blue?style=for-the-badge" alt="Last Updated"/>
+  <br>
+  <img src="https://img.shields.io/badge/Min_Magisk-20.4-red?style=flat-square" alt="Min Magisk"/>
+  <img src="https://img.shields.io/badge/Min_KernelSU-0.6.6-red?style=flat-square" alt="Min KernelSU"/>
 </div>

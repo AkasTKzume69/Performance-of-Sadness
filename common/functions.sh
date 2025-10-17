@@ -97,7 +97,7 @@ install_script() {
   case "$1" in
     -b) shift; 
         if $KSU; then
-          local INPATH=$NVBASE/boot-completed.d
+        local INPATH=$NVBASE/boot-completed.d
         else
           local INPATH=$SERVICED
           sed -i -e '1i (\nwhile [ "$(getprop sys.boot_completed)" != "1" ]; do\n  sleep 1\ndone\nsleep 3\n' -e '$a)&' $1
@@ -147,15 +147,10 @@ mount_mirrors() {
 }
 
 # Credits
-# ╔══════════════════════════════════════════════════════════╗
-# ║              Performance of Sadness Installer             ║
-# ╚══════════════════════════════════════════════════════════╝
-
-ui_print ""
 ui_print "╔══════════════════════════════════════════════════════╗"
 ui_print "║                                                      ║"
-ui_print "║     💠 Performance of Sadness - Module Installer 💠   ║"
-ui_print "║                by @AkasTKzume69                      ║"
+ui_print "║   💠 Performance of Sadness - Module Installer 💠     ║"
+ui_print "║               by @AkasTKzume69                       ║"
 ui_print "║                                                      ║"
 ui_print "╚══════════════════════════════════════════════════════╝"
 ui_print ""
@@ -163,7 +158,6 @@ sleep 0.4
 ui_print "→ Preparing environment..."
 sleep 0.4
 ui_print "→ Checking compatibility..."
-sleep 0.4
 
 # Check for min/max api version
 [ -z $MINAPI ] || { [ $API -lt $MINAPI ] && abort "! Your system API of $API is less than the minimum api of $MINAPI! Aborting!"; }
@@ -202,7 +196,7 @@ elif [ "$(magisk --path 2>/dev/null)" ]; then
   else
     ORIGDIR="$(magisk --path 2>/dev/null)/.magisk/mirror"
   fi
-elif [ "$(echo $MAGISKTMP | awk -F/ '{ print $NF}')" == ".magisk" ]; then
+  elif [ "$(echo $MAGISKTMP | awk -F/ '{ print $NF}')" == ".magisk" ]; then
   ORIGDIR="$MAGISKTMP/mirror"
 else
   ORIGDIR="$MAGISKTMP/.magisk/mirror"
@@ -223,8 +217,8 @@ elif ! $PARTOVER; then
 fi
 
 if ! $BOOTMODE; then
-  ui_print "- Only uninstall is supported in recovery"
-  ui_print "  Uninstalling!"
+  ui_print "→ Only uninstall is supported in recovery"
+  ui_print "→ Uninstalling!"
   touch $MODPATH/remove
   [ -s $INFO ] && install_script $MODPATH/uninstall.sh || rm -f $INFO $MODPATH/uninstall.sh
   recovery_cleanup
@@ -249,7 +243,8 @@ if [ "$(ls -A $MODPATH/common/addon/*/install.sh 2>/dev/null)" ]; then
 fi
 
 # Remove files outside of module directory
-ui_print "- Removing old files"
+ui_print "→ Removing old files"
+sleep 0.4
 
 if [ -f $INFO ]; then
   while read LINE; do
@@ -274,7 +269,7 @@ sleep 0.4
 
 [ -f "$MODPATH/common/install.sh" ] && . $MODPATH/common/install.sh
 
-ui_print "   Installing for $ARCH SDK $API device..."
+ui_print "→ Installing for $ARCH SDK $API device..."
 # Remove comments from files and place them, add blank line to end if not already present
 for i in $(find $MODPATH -type f -name "*.sh" -o -name "*.prop" -o -name "*.rule"); do
   [ -f $i ] && { sed -i -e "/^#/d" -e "/^ *$/d" $i; [ "$(tail -1 $i)" ] && echo "" >> $i; } || continue

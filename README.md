@@ -35,8 +35,8 @@
 
 <div align="center">
   <!-- Shields -->
-  <img src="https://img.shields.io/badge/Latest_Version-V1_20251017-green?style=for-the-badge" alt="Version"/>
-  <img src="https://img.shields.io/badge/Last_Updated-October_17,_2025-blue?style=for-the-badge" alt="Last Updated"/>
+  <img src="https://img.shields.io/badge/Latest_Version-V2_20251018-green?style=for-the-badge" alt="Version"/>
+  <img src="https://img.shields.io/badge/Last_Updated-October_18,_2025-blue?style=for-the-badge" alt="Last Updated"/>
   <br>
   <img src="https://img.shields.io/badge/Min_Magisk-20.4-red?style=flat-square" alt="Min Magisk"/>
   <img src="https://img.shields.io/badge/Min_KernelSU-0.6.6-red?style=flat-square" alt="Min KernelSU"/>

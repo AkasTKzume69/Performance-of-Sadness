@@ -147,12 +147,13 @@ mount_mirrors() {
 }
 
 # Credits
-ui_print "╔══════════════════════════════════════════════════════╗"
-ui_print "║                                                      ║"
-ui_print "║   💠 Performance of Sadness - Module Installer 💠     ║"
-ui_print "║               by @AkasTKzume69                       ║"
-ui_print "║                                                      ║"
-ui_print "╚══════════════════════════════════════════════════════╝"
+ui_print ""
+ui_print "╔════════════════════════════════════════╗"
+ui_print "║                                             ║"
+ui_print "║        Performance of Sadness Installer     ║"
+ui_print "║             by @AkasTKzume69                ║"
+ui_print "║                                             ║"
+ui_print "╚════════════════════════════════════════╝"
 ui_print ""
 sleep 0.4
 ui_print "→ Preparing environment..."
@@ -308,9 +309,8 @@ if $DYNLIB; then
 fi
 
 # Set permissions
-ui_print " "
 ui_print "→ Finalizing installation..."
-sleep 0.4
+sleep 3.0
 set_perm_recursive $MODPATH 0 0 0755 0644
 for i in /system/vendor /vendor /system/vendor/app /vendor/app /system/vendor/etc /vendor/etc /system/odm/etc /odm/etc /system/vendor/odm/etc /vendor/odm/etc /system/vendor/overlay /vendor/overlay; do
   if [ -d "$MODPATH$i" ] && [ ! -L "$MODPATH$i" ]; then
@@ -332,10 +332,12 @@ ui_print ""
 ui_print "✅ Module installed successfully!"
 ui_print "🔁 Please reboot your device to activate optimizations."
 ui_print ""
-ui_print "────────────────────────────────────────────────────────"
-ui_print "  ⚙️  Thank you for installing Performance of Sadness"
-ui_print "      • Firmware-based optimization module             "
-ui_print "      • Tuned for stability, efficiency, and speed     "
-ui_print "────────────────────────────────────────────────────────"
+ui_print "──────────────────────────────────────────"
+ui_print " ⚙️  Thank you for installing Performance of"
+ui_print "                     Sadness"
+ui_print "     • Firmware-based optimization module"
+ui_print "     • Tuned for stability, efficiency, and"
+ui_print "                     speed"
+ui_print "──────────────────────────────────────────"
 ui_print ""
 cleanup

@@ -18,7 +18,7 @@
     </a>
     <span> | </span>
     <a href="https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/installation.md">
-      Installation and Guide
+      Installation
     </a>
     <span> | </span>
     <a href="https://sourceforge.net/projects/akastkzume-files/">

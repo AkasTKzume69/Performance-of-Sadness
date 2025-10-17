@@ -35,26 +35,7 @@ REPLACE_EXAMPLE="
 "
 
 # Construct your own list here
-REPLACE="
-/system/vendor/etc/thermal-4k.conf
-/system/vendor/etc/thermal-arvr.conf
-/system/vendor/etc/thermal-camera.conf
-/system/vendor/etc/thermal-chg-only.conf
-/system/vendor/etc/thermal-class0.conf
-/system/vendor/etc/thermal-engine.conf
-/system/vendor/etc/thermal-extreme.conf
-/system/vendor/etc/thermal-high.conf
-/system/vendor/etc/thermal-map.conf
-/system/vendor/etc/thermal-mgame.conf
-/system/vendor/etc/thermal-nevigation.conf
-/system/vendor/etc/thermal-nolimits.conf
-/system/vendor/etc/thermal-normal.conf
-/system/vendor/etc/thermal-phone.conf
-/system/vendor/etc/thermal-tgame.conf
-/system/vendor/etc/thermal-video.conf
-/system/vendor/etc/thermal-youtube.conf
-/system/vendor/etc/thermal-devices.conf
-"
+#REPLACE=""
 
 ##########################################################################################
 # Permissions

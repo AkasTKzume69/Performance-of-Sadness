@@ -1,7 +1,7 @@
 ### V4 2025-10-31
 * Introduced new Touch Boost system prop
 * Introduced new vendor/etc/msm_irqbalance.conf
-* 
+* Added mdss, smem-rpm, mpm, kgsl, glink_lpass vendor/etc/msm_irqbalance.conf
 
 ### V3 2025-10-24
 * Introduced new vendor/etc/powerhint.json

@@ -1,4 +1,4 @@
-#Touch Boost
+#Touch Boost (By AkasTKzume)
 touch.pressure.scale=0
 persist.sys.ui.hw=1
 touch.size.calibration=diameter
@@ -15,3 +15,9 @@ MultitouchSettleInterval=1ms
 TapInterval=1ms
 TapSlop=1px
 view.scroll_friction=0
+
+#####GPU Tweaks (By AkasTKzume)#####
+#Switch to vulkanskia renderthread backend pipeline
+debug.hwui.renderer=skiavk
+
+#####End of System Prop#####

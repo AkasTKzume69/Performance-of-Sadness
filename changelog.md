@@ -1,3 +1,6 @@
+### V5 2025-11-03
+* Switched to vulkan renderthread backend pipeline
+
 ### V4 2025-11-02
 * Introduced new Touch Boost system prop
 * Introduced new vendor/etc/msm_irqbalance.conf

@@ -32,8 +32,4 @@ TapInterval=1ms
 TapSlop=1px
 view.scroll_friction=0
 
-#####GPU Tweaks (By AkasTKzume)#####
-#Switch to vulkanskia renderthread backend pipeline
-debug.hwui.renderer=skiavk
-
 #####End of System Prop#####

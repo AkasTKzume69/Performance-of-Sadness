@@ -1,5 +1,8 @@
 ### V5 2025-11-03
-* Switched to vulkan renderthread backend pipeline
+* Introduced new Performance of Sadness AI (Zero CPU/RAM usage)
+* Introduced new vendor/perf_profile
+* Introduced new Performance of Sadness log (Path /sdcard/Performance-of-Sadness.log
+* Switched to vulkan renderthread backend pipeline (Global)
 
 ### V4 2025-11-02
 * Introduced new Touch Boost system prop

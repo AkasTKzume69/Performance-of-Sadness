@@ -22,7 +22,7 @@
 (
 while true; do
 TEMP=$(cat /sys/class/thermal/thermal_zone16/temp 2>/dev/null)
-if [ "$TEMP" -ge 65000 ]; then
+if [ "$TEMP" -ge 55000 ]; then
 echo 1516800 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 echo 1516800 > /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
 echo 1516800 > /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq

@@ -1,6 +1,6 @@
 set_permissions() {
-  set_perm  $MODPATH/system/vendor/bin/perf_profile.sh       0       0       0755
-  set_perm  $MODPATH/system/vendor/bin/restore_perf_profile.sh       0       0       0755
+  set_perm  $MODPATH/system/vendor/bin/perf_profile.sh       0       0       0777
+  set_perm  $MODPATH/system/vendor/bin/restore_perf_profile.sh       0       0       0777
 }
 
 SKIPUNZIP=1

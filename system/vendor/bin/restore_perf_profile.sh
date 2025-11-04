@@ -62,11 +62,11 @@ echo 0 > /dev/stune/top-app/schedtune.boost 2>/dev/null
 echo 1 > /dev/stune/top-app/schedtune.prefer_idle 2>/dev/null
 
 # --- Revert Props (safe reset) ---
-setprop debug.hwui.disable_vsync false
-setprop debug.sf.latch_unsignaled 0
-setprop debug.sf.enable_hwc_vds 0
-setprop ro.surface_flinger.max_frame_buffer_acquire_buffers 2
-setprop debug.performance.tuning 0
+resetprop debug.hwui.disable_vsync
+resetprop debug.sf.latch_unsignaled
+resetprop debug.sf.enable_hwc_vds
+resetprop ro.surface_flinger.max_frame_buffer_acquire_buffers
+resetprop debug.performance.tuning
 
 # --- Clear flag ---
 setprop performance.of.sadness stopped

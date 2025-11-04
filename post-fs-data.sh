@@ -1,6 +1,6 @@
 #!/system/bin/sh
 # ==========================================================
-# Performance of Sadness AI + Vulkan Renderer Switcher
+# Performance of Sadness
 # Copyright (C) 2025  AkasTKzume
 #
 # This script is part of the "Performance of Sadness" project.

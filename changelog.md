@@ -1,3 +1,15 @@
+### V6 2025-11-04
+* Improved Performance of Sadness AI
+* Introduced new Dynamic CPU Throttling (Zero CPU/RAM usage)
+* Added more games detection of Performance Sadness AI
+* Added CPU/GPU Tuning on Performance of Sadness AI
+* Added Virtual Memory and Memory Tuning on Performance of Sadness AI
+* Added I/O Scheduler Tuning on Performance of Sadness AI
+* Added Background Tasks Pressure Reduction on Performance of Sadness AI
+* Reverted to stock all /vendor/etc/thermal*conf
+* Improved logs at /sdcard/Performance-of-Sadness.log
+* Fixed some miscellaneous and scripts
+
 ### V5 2025-11-03
 * Introduced new Performance of Sadness AI (Zero CPU/RAM usage)
 * Introduced new /vendor/perf_profile
@@ -17,11 +29,11 @@
 * Increased SUSTAINED_PERFORMANCE CPUBigClusterMaxFreq 1401600 to Highest
 * Increased SUSTAINED_PERFORMANCE CPULittleClusterMaxFreq 1651200 to Highest
 * Increased INTERACTION CPUBigClusterMaxFreq 1228800 to 1651200
-* Revert to stock /vendor/etc/thermal-class0.conf
-* Revert to stock /vendor/etc/thermal-camera.conf
-* Revert to stock /vendor/etc/thermal-phone.conf
-* Revert to stock /vendor/etc/thermal-video.conf
-* Revert to stock /vendor/etc/thermal-youtube.conf
+* Reverted to stock /vendor/etc/thermal-class0.conf
+* Reverted to stock /vendor/etc/thermal-camera.conf
+* Reverted to stock /vendor/etc/thermal-phone.conf
+* Reverted to stock /vendor/etc/thermal-video.conf
+* Reverted to stock /vendor/etc/thermal-youtube.conf
 
 ### V2 2025-10-18
 * Removed /vendor/etc/thermal-arvr.conf

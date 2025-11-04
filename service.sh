@@ -16,10 +16,15 @@
 # ==========================================================
 
 LOGFILE="/sdcard/Performance-of-Sadness.log"
-GAME_PACKAGES="com.mobile.legends com.roblox.client com.activision.callofduty.shooter com.garena.game.codm"
-PERF_SCRIPT="/system/vendor/bin/perf_profile.sh"
-RESTORE_SCRIPT="/system/vendor/bin/restore_perf_profile.sh"
+GAME_PACKAGES="com.activision.callofduty.shooter com.activision.callofduty.warzone com.garena.game.codm com.mobile.legends com.tencent.tmgp.sgame com.levelinfinite.sgameGlobal com.riotgames.league.wildrift com.roblox.client com.tencent.ig com.vng.pubgmobile com.pubg.imobile com.pubg.newstate com.carxtech.carxstreet com.miHoYo.GenshinImpact com.hoYoverse.hkrpg com.mojang.minecraftpe com.mojang.minecrafttrialpe com.mojang.minecrafteducation com.robtopx.geometryjump com.popcap.pvz_row com.ea.game.pvz2_row com.kiloo.subwaysurf com.sybo.subwaysurf org.linaro.android.cpustress com.antutu.ABenchMark com.antutu.benchmark.full com.antutu.benchmark.lite com.antutu.ABenchMark3D com.antutu.benchmark3d.lite org.geekbench.benchmark com.primatelabs.geekbench6"
+PERF_SCRIPT="/vendor/bin/perf_profile.sh"
+RESTORE_SCRIPT="/vendor/bin/restore_perf_profile.sh"
 MARKER="/data/local/tmp/.perf_active"
+DEVICE_MARKETNAME=$(getprop ro.product.marketname)
+DEVICE_MANUFACTURER=$(getprop ro.product.manufacturer)
+DEVICE_BRAND=$(getprop ro.product.brand)
+DEVICE_MODEL=$(getprop ro.product.model)
+DEVICE=$(getprop ro.product.device)
 
 # --- Logging Function ---
 log() {
@@ -29,24 +34,35 @@ log() {
 # --- Check if script executable ---
 script_ok() { [ -x "$1" ]; }
 
+sleep 30
+
+# --- Clear Logs Every Boot ---
+if [ -f "$LOGFILE" ]; then
+> "$LOGFILE"
+fi
+
+# --- Display Device Currently Using ---
+echo "Device: $DEVICE_MARKETNAME " >> $LOGFILE
+echo "Manufacturer: $DEVICE_MANUFACTURER " >> $LOGFILE
+echo "Brand: $DEVICE_BRAND " >> $LOGFILE
+echo "Model: $DEVICE_MODEL " >> $LOGFILE
+echo "Codename: $DEVICE " >> $LOGFILE
+
 # ==============================
 #  Vulkan Renderer Switch
 # ==============================
-log "[VulkanRendererSwitch] Waiting 30s for system boot..."
-sleep 30
-
-log "[VulkanRendererSwitch] Restarting user apps to apply Vulkan renderer..."
+log "[Performance Of Sadness AI] Restarting user apps to apply Vulkan renderer..."
 for a in $(pm list packages -3 | cut -f2 -d:); do
     am force-stop "$a" >/dev/null 2>&1 &
 done
-log "[VulkanRendererSwitch] Forced user apps restart complete."
+log "[Performance Of Sadness AI] Forced user apps restart complete."
 
 # ==============================
 #  Performance of Sadness AI
 # ==============================
 apply_profile() {
     if [ ! -f "$MARKER" ]; then
-        log "[PerformanceOfSadnessAI] Game detected, applying performance profile."
+        log "[Performance Of Sadness AI] Game detected, applying performance profile."
         touch "$MARKER"
         script_ok "$PERF_SCRIPT" && sh "$PERF_SCRIPT" >> "$LOGFILE" 2>&1 &
     fi
@@ -54,13 +70,13 @@ apply_profile() {
 
 restore_profile() {
     if [ -f "$MARKER" ]; then
-        log "[PerformanceOfSadnessAI] Game closed, restoring default profile."
+        log "[Performance Of Sadness AI] Game closed, restoring default profile."
         rm -f "$MARKER"
         script_ok "$RESTORE_SCRIPT" && sh "$RESTORE_SCRIPT" >> "$LOGFILE" 2>&1 &
     fi
 }
 
-log "[PerformanceOfSadnessAI] Service started."
+log "[Performance Of Sadness AI] Service started."
 
 while true; do
     current_count=0

@@ -14,7 +14,11 @@
 # Author: AkasTKzume
 # ==========================================================
 
-#Touch Booster
+# ==========================================================
+# BETA State Optimization
+# ==========================================================
+
+# --- Touch Boost Tweaks ---
 touch.pressure.scale=0
 persist.sys.ui.hw=1
 touch.size.calibration=diameter
@@ -31,5 +35,18 @@ MultitouchSettleInterval=1ms
 TapInterval=1ms
 TapSlop=1px
 view.scroll_friction=0
+
+# --- Soft Restart ---
+sys.use_fifo_ui=1
+sys.scheduler.priority=1
+persist.sys.scheduler_boost=1
+persist.sys.scrollingcache=3
+persist.sys.ui.hw=1
+
+# --- Hard Restart ---
+persist.sys.NV_FPSLIMIT=0
+persist.sys.purgeable_assets=1
+persist.sys.use_dithering=0
+persist.sys.force_highendgfx=1
 
 #####End of System Prop#####

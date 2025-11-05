@@ -83,7 +83,6 @@ echo 1 > /dev/stune/top-app/schedtune.prefer_idle 2>/dev/null
 setprop debug.hwui.disable_vsync true
 setprop debug.sf.latch_unsignaled 1
 setprop debug.sf.enable_hwc_vds 1
-setprop ro.surface_flinger.max_frame_buffer_acquire_buffers 3
 setprop debug.performance.tuning 1
 
 # --- Flag Service ---

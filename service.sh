@@ -51,13 +51,13 @@ echo "Codename: $DEVICE " >> $LOGFILE
 # ==============================
 #  Vulkan Renderer Switch
 # ==============================
-log "[VulkanRendererSwitch] Applying Vulkan renderer (skiavk)..."
+log "[Performance of Sadness AI] Applying Vulkan Renderer..."
 setprop debug.hwui.renderer skiavk
 
 # Small delay to ensure property propagation before killing apps
 sleep 1.5
 
-log "[VulkanRendererSwitch] Restarting user apps to apply Vulkan renderer..."
+log "[Performance of Sadness AI] Restarting user apps..."
 # Gracefully restart only user apps (skip system ones)
 for a in $(pm list packages -3 | cut -f2 -d:); do
     am force-stop "$a" >/dev/null 2>&1 &
@@ -69,7 +69,7 @@ sync
 setprop debug.hwui.disable_vulkan 0
 setprop debug.hwui.use_buffer_age false
 
-log "[VulkanRendererSwitch] Vulkan renderer applied successfully and user apps restarted."
+log "[Performance of Sadness AI] Vulkan renderer applied successfully and user apps restarted."
 
 # ==============================
 #  Performance of Sadness AI

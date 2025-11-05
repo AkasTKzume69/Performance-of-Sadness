@@ -65,7 +65,6 @@ echo 1 > /dev/stune/top-app/schedtune.prefer_idle 2>/dev/null
 resetprop debug.hwui.disable_vsync
 resetprop debug.sf.latch_unsignaled
 resetprop debug.sf.enable_hwc_vds
-resetprop ro.surface_flinger.max_frame_buffer_acquire_buffers
 resetprop debug.performance.tuning
 
 # --- Clear flag ---

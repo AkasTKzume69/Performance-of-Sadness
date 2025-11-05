@@ -1,3 +1,6 @@
+### V7 2025-11-05
+* Fixed some miscellaneous and scripts
+
 ### V6 2025-11-04
 * Improved Performance of Sadness AI
 * Introduced new Dynamic CPU Throttling (Zero CPU/RAM usage)

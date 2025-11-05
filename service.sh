@@ -34,7 +34,7 @@ log() {
 # --- Check if script executable ---
 script_ok() { [ -x "$1" ]; }
 
-sleep 30
+sleep 38
 
 # --- Clear Logs Every Boot ---
 if [ -f "$LOGFILE" ]; then
@@ -51,11 +51,25 @@ echo "Codename: $DEVICE " >> $LOGFILE
 # ==============================
 #  Vulkan Renderer Switch
 # ==============================
-log "[Performance Of Sadness AI] Restarting user apps to apply Vulkan renderer..."
+log "[VulkanRendererSwitch] Applying Vulkan renderer (skiavk)..."
+setprop debug.hwui.renderer skiavk
+
+# Small delay to ensure property propagation before killing apps
+sleep 1.5
+
+log "[VulkanRendererSwitch] Restarting user apps to apply Vulkan renderer..."
+# Gracefully restart only user apps (skip system ones)
 for a in $(pm list packages -3 | cut -f2 -d:); do
     am force-stop "$a" >/dev/null 2>&1 &
 done
-log "[Performance Of Sadness AI] Forced user apps restart complete."
+
+# Add a final sync and cache flush to stabilize UI compositor
+sleep 0.5
+sync
+setprop debug.hwui.disable_vulkan 0
+setprop debug.hwui.use_buffer_age false
+
+log "[VulkanRendererSwitch] Vulkan renderer applied successfully and user apps restarted."
 
 # ==============================
 #  Performance of Sadness AI

@@ -1,3 +1,7 @@
+### V8 2025-11-06
+* Fixed video color bug (Vulkan Pipeline)
+* Fixed some miscellaneous and scripts
+
 ### V7 2025-11-05
 * Fixed some miscellaneous and scripts
 

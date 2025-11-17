@@ -125,7 +125,7 @@ apply_profile() {
     if [ ! -f "$Marker" ]; then
         log "[$POSid] Game detected, applying performance profile."
         touch "$Marker"
-        script_ok "$Performance_Script" && sh "$Performance_Script" >> "$Logfile" 2>&1 &
+        script_ok "$Performance_Script" && sh "$Performance_Script" >/dev/null 2>&1 &
     fi
 }
 
@@ -133,7 +133,7 @@ restore_profile() {
     if [ -f "$Marker" ]; then
         log "[$POSid] Game closed, restoring default profile."
         rm -f "$Marker"
-        script_ok "$Restore_Script" && sh "$Restore_Script" >> "$Logfile" 2>&1 &
+        script_ok "$Restore_Script" && sh "$Restore_Script" >/dev/null 2>&1 &
     fi
 }
 

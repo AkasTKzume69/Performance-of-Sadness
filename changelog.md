@@ -3,12 +3,11 @@
 <section>
   <h3>Upcoming V9</h3>
   <ul>
-    <li>Fixed Current Renderer blank on Performance-of-Sadness.log</li>
-  </ul>
-  <ul>
     <li>Improved <strong>Performance of Sadness AI</strong> logic and efficiency</li>
-  </ul>
-  <ul>
+    <li>Added new <strong>launcher-list.pof</strong> file (stores all supported launcher for restoring default profile detection)</li>
+    <li>Reduced delay when relaunching game</li>
+    <li>Switched to Launcher restore detection instead using non-game list</li>
+    <li>Fixed Current Renderer blank on Performance-of-Sadness.log</li>
     <li>Fixed miscellaneous issues and script errors</li>
   </ul>
 </section>

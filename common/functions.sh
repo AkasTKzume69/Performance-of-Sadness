@@ -147,18 +147,130 @@ mount_mirrors() {
 }
 
 # Credits
-ui_print ""
-ui_print "╔════════════════════════════════════════╗"
-ui_print "║                                             ║"
-ui_print "║        Performance of Sadness Installer     ║"
-ui_print "║             by @AkasTKzume69                ║"
-ui_print "║                                             ║"
-ui_print "╚════════════════════════════════════════╝"
-ui_print ""
+ui_print " "
+ui_print "=============================================="
+ui_print " PERFORMANCE OF SADNESS "
+ui_print " "
+ui_print " By: AkasTKzume🇵🇭 "
+ui_print " Telegram: t.me/AkasTKzume69 "
+ui_print " Support Group: t.me/AkasTKzumeOFFICIAL"
+ui_print " Support Channel: t.me/AkasTKzumeUPDATES"
+ui_print "=============================================="
+sleep 8.0
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print "=============================================="
+ui_print "                   LICENSE"
+ui_print "=============================================="
+ui_print "# Performance of Sadness"
+ui_print "# Copyright (C) 2025  AkasTKzume"
+ui_print "#"
+ui_print "# This module is part of the 'Performance of Sadness' project."
+ui_print "# Unauthorized copying, modification, or distribution of this"
+ui_print "# file, via any medium, is strictly prohibited without prior"
+ui_print "# permission from the author."
+ui_print "#"
+ui_print "# Licensed under the GNU General Public License v3.0 (GPLv3)"
+ui_print "# You may obtain a copy of the License at:"
+ui_print "# https://www.gnu.org/licenses/gpl-3.0.en.html"
+ui_print "#"
+ui_print "# Author: AkasTKzume"
+ui_print "=============================================="
+ui_print " "
+ui_print "=============================================="
+ui_print "                   WARNING"
+ui_print "=============================================="
+ui_print "• Your warranty is now **void**."
+ui_print "• I am NOT responsible for:"
+ui_print "    – Bricked devices"
+ui_print "    – Dead SD cards"
+ui_print "    – Thermonuclear war"
+ui_print "    – You getting fired because your alarm app failed"
+ui_print "    – You falling into a hole because your flashlight broke"
+ui_print "• Please research first if you have concerns!"
+ui_print "• YOU chose to flash this. If you blame me for breaking your device,"
+ui_print "  I will laugh at you. :)"
+ui_print "=============================================="
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+sleep 9.0
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
 sleep 0.4
-ui_print "→ Preparing environment..."
+ui_print "☑ Preparing installation..."
 sleep 0.4
-ui_print "→ Checking compatibility..."
+ui_print "☑ Checking system compatibility..."
 
 # Check for min/max api version
 [ -z $MINAPI ] || { [ $API -lt $MINAPI ] && abort "! Your system API of $API is less than the minimum api of $MINAPI! Aborting!"; }
@@ -218,8 +330,8 @@ elif ! $PARTOVER; then
 fi
 
 if ! $BOOTMODE; then
-  ui_print "→ Only uninstall is supported in recovery"
-  ui_print "→ Uninstalling!"
+  ui_print "☑ Only uninstall is supported in recovery"
+  ui_print "☑ Uninstalling!"
   touch $MODPATH/remove
   [ -s $INFO ] && install_script $MODPATH/uninstall.sh || rm -f $INFO $MODPATH/uninstall.sh
   recovery_cleanup
@@ -229,7 +341,7 @@ if ! $BOOTMODE; then
 fi
 
 # Extract files
-ui_print "→ Extracting required files..."
+ui_print "☑ Extracting required files..."
 sleep 0.4
 unzip -o "$ZIPFILE" -x 'META-INF/*' 'common/functions.sh' -d $MODPATH >&2
 [ -f "$MODPATH/common/addon.tar.xz" ] && tar -xf $MODPATH/common/addon.tar.xz -C $MODPATH/common 2>/dev/null
@@ -244,7 +356,7 @@ if [ "$(ls -A $MODPATH/common/addon/*/install.sh 2>/dev/null)" ]; then
 fi
 
 # Remove files outside of module directory
-ui_print "→ Removing old files"
+ui_print "☑ Removing old files"
 sleep 0.4
 
 if [ -f $INFO ]; then
@@ -265,12 +377,15 @@ if [ -f $INFO ]; then
 fi
 
 ### Install
-ui_print "→ Applying system modifications..."
+ui_print "☑ Applying optimization scripts..."
+ui_print "☑ Installing Performance of Sadness AI engine..."
 sleep 0.4
 
 [ -f "$MODPATH/common/install.sh" ] && . $MODPATH/common/install.sh
 
-ui_print "→ Installing for $ARCH SDK $API device..."
+ui_print "☑ Target Architecture: ARM, ARM64, ARM128..."
+ui_print "☑ Your Architecture is $ARCH"
+ui_print "☑ Installing for $ARCH SDK $API device..."
 # Remove comments from files and place them, add blank line to end if not already present
 for i in $(find $MODPATH -type f -name "*.sh" -o -name "*.prop" -o -name "*.rule"); do
   [ -f $i ] && { sed -i -e "/^#/d" -e "/^ *$/d" $i; [ "$(tail -1 $i)" ] && echo "" >> $i; } || continue
@@ -309,7 +424,7 @@ if $DYNLIB; then
 fi
 
 # Set permissions
-ui_print "→ Finalizing installation..."
+ui_print "☑ Finalizing installation..."
 sleep 3.0
 set_perm_recursive $MODPATH 0 0 0755 0644
 for i in /system/vendor /vendor /system/vendor/app /vendor/app /system/vendor/etc /vendor/etc /system/odm/etc /odm/etc /system/vendor/odm/etc /vendor/odm/etc /system/vendor/overlay /vendor/overlay; do
@@ -328,16 +443,10 @@ done
 set_permissions
 
 # Complete install
-ui_print ""
-ui_print "✅ Module installed successfully!"
-ui_print "🔁 Please reboot your device to activate optimizations."
-ui_print ""
-ui_print "──────────────────────────────────────────"
-ui_print " ⚙️  Thank you for installing Performance of"
-ui_print "                     Sadness"
-ui_print "     • Firmware-based optimization module"
-ui_print "     • Tuned for stability, efficiency, and"
-ui_print "                     speed"
-ui_print "──────────────────────────────────────────"
-ui_print ""
+ui_print " "
+ui_print "=============================================="
+ui_print " ☑ Installation Complete Successfully"
+ui_print "→ Please reboot your device to activate the module."
+ui_print "=============================================="
+ui_print " "
 cleanup

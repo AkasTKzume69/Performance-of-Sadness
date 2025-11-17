@@ -70,7 +70,6 @@ echo "ROM: $Device_Flavor " >> $Logfile
 
 # --- Display Current Renderer ---
 echo "Current Renderer: $Device_Current_Renderer" >> $Logfile
-echo "Game List Path: $Games" >> $Logfile  # Log where game list is loaded from
 
 # ==============================
 #  Performance of Sadness AI Helper Functions

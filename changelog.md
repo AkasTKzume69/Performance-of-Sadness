@@ -1,6 +1,16 @@
-### V8 2025-11-06
+### V8 2025-11-17
+* Introduced new Dynamic Vulkan Pipeline Renderer Switch (Only applies when game launched)
+* Introduced new game-list.pof (This file stores all game that includes on Performance of Sadness AI apply settings)
+* Introduced new Dalvik Hyperthreading
+* Introduced new pof_profile and pof_restore_profile
+* Improved Performance of Sadness AI
+* Improved GPU Frequencies on pof_profile
+* Improved log scripts on /sdcard/Performance-of-Sadness.log
 * Fixed video color bug (Vulkan Pipeline)
 * Fixed some miscellaneous and scripts
+* Dropped /vendor/bin/perf_profile.sh
+* Dropped /vendor/bin/restore_perf_profile.sh
+* Many under the hood changes.
 
 ### V7 2025-11-05
 * Fixed some miscellaneous and scripts
@@ -19,7 +29,8 @@
 
 ### V5 2025-11-03
 * Introduced new Performance of Sadness AI (Zero CPU/RAM usage)
-* Introduced new /vendor/perf_profile
+* Introduced new /vendor/perf_profile.sh
+* Introduced new /vendor/restore_perf_profile.sh
 * Introduced new Performance of Sadness log /sdcard/Performance-of-Sadness.log
 * Switched to vulkan renderthread backend pipeline (Global)
 

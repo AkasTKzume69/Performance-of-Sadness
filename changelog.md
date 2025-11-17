@@ -1,6 +1,16 @@
 <h2>Changelog</h2>
 
 <section>
+  <h3>Upcoming V9</h3>
+  <ul>
+    <li>Fixed miscellaneous issues and script errors</li>
+  </ul>
+  <ul>
+    <li>Improved <strong>Performance of Sadness AI</strong> logic and efficiency</li>
+  </ul>
+</section>
+
+<section>
   <h3>V8 — 2025-11-17</h3>
   <ul>
     <li>Introduced the <strong>Dynamic Vulkan Pipeline Renderer Switch</strong> (applies only when a game is launched)</li>

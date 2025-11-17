@@ -15,11 +15,11 @@
 # ==========================================================
 
 # --- Main Variables ---
-POFid="Performance of Sadness AI"
+POSid="Performance of Sadness AI"
 Logfile="/sdcard/Performance-of-Sadness.log"
-Games="/vendor/etc/game-list.pof"
-Performance_Script="/vendor/bin/pof_profile.sh"
-Restore_Script="/vendor/bin/pof_restore.sh"
+Games="/vendor/etc/game-list.pos"
+Performance_Script="/vendor/bin/perf_profile.pos"
+Restore_Script="/vendor/bin/perf_profile_restore.pos"
 Marker="/data/local/tmp/.perf_active"
 VULKAN_APPLIED=0 # Flag to track Vulkan state
 
@@ -43,11 +43,11 @@ fi
 # --- Critical Check: Ensure Game List File Exists & is Readable ---
 if [ ! -f "$Games" ]; then
     echo "ERROR: Game list file not found at $Games" >> "$Logfile"
-    log "[$POFid] Service failed to start: Game list file missing!"
+    log "[$POSid] Service failed to start: Game list file missing!"
     exit 1  # Exit script if file doesn't exist
 elif [ ! -r "$Games" ]; then
     echo "ERROR: No read permission for game list file at $Games" >> "$Logfile"
-    log "[$POFid] Service failed to start: Can't read game list file!"
+    log "[$POSid] Service failed to start: Can't read game list file!"
     exit 1  # Exit script if file can't be read
 fi
 
@@ -77,7 +77,7 @@ echo "Game List Path: $Games" >> $Logfile  # Log where game list is loaded from
 # ==============================
 apply_vulkan() {
     if [ "$VULKAN_APPLIED" -eq 0 ]; then
-        log "[$POFid] Applying Vulkan Renderer..."
+        log "[$POSid] Applying Vulkan Renderer..."
         setprop debug.hwui.renderer skiavk
         sleep 1.5
         sync
@@ -86,7 +86,7 @@ apply_vulkan() {
 
         # Build regex from game list file to find running games
         Game_Regex=$(cat "$Games" | sed 's/ /\(|\|^/g')
-        log "[$POFid] Relaunching detected game to apply Vulkan..."
+        log "[$POSid] Relaunching detected game to apply Vulkan..."
 
         # Find the specific running game's package name
         running_game=""
@@ -99,32 +99,32 @@ apply_vulkan() {
 
         if [ -n "$running_game" ]; then
             # Restart only the specific running game with Vulkan
-            log "[$POFid] Force-stopping $running_game and relaunching with monkey"
+            log "[$POSid] Force-stopping $running_game and relaunching with monkey"
             am force-stop "$running_game"
             sleep 2
             monkey -p "$running_game" -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1
         fi
 
         VULKAN_APPLIED=1
-        log "[$POFid] Vulkan renderer applied and game relaunched."
+        log "[$POSid] Vulkan renderer applied and game relaunched."
     fi
 }
 
 restore_opengl() {
     if [ "$VULKAN_APPLIED" -eq 1 ]; then
-        log "[$POFid] Restoring OpenGL Renderer..."
+        log "[$POSid] Restoring OpenGL Renderer..."
         setprop debug.hwui.renderer opengl
         sync
         setprop debug.hwui.disable_vulkan 1
         setprop debug.hwui.use_buffer_age true
         VULKAN_APPLIED=0
-        log "[$POFid] OpenGL renderer restored."
+        log "[$POSid] OpenGL renderer restored."
     fi
 }
 
 apply_profile() {
     if [ ! -f "$Marker" ]; then
-        log "[$POFid] Game detected, applying performance profile."
+        log "[$POSid] Game detected, applying performance profile."
         touch "$Marker"
         script_ok "$Performance_Script" && sh "$Performance_Script" >> "$Logfile" 2>&1 &
     fi
@@ -132,13 +132,13 @@ apply_profile() {
 
 restore_profile() {
     if [ -f "$Marker" ]; then
-        log "[$POFid] Game closed, restoring default profile."
+        log "[$POSid] Game closed, restoring default profile."
         rm -f "$Marker"
         script_ok "$Restore_Script" && sh "$Restore_Script" >> "$Logfile" 2>&1 &
     fi
 }
 
-log "[$POFid] Service started successfully."
+log "[$POSid] Service started successfully."
 
 while true; do
     current_count=0

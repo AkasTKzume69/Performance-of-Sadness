@@ -49,4 +49,12 @@ persist.sys.purgeable_assets=1
 persist.sys.use_dithering=0
 persist.sys.force_highendgfx=1
 
+# ==========================================================
+# ALPHA State Optimization
+# ==========================================================
+
+# --- Enable Multi-Core DEX OPT ---
+persist.sys.dalvik.hyperthreading=true
+persist.sys.dalvik.multithread=true
+
 #####End of System Prop#####

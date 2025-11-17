@@ -1,73 +1,108 @@
-### V8 2025-11-17
-* Introduced new Dynamic Vulkan Pipeline Renderer Switch (Only applies when game launched)
-* Introduced new game-list.pof (This file stores all game that includes on Performance of Sadness AI apply settings)
-* Introduced new Dalvik Hyperthreading
-* Introduced new pof_profile and pof_restore_profile
-* Improved Performance of Sadness AI
-* Improved GPU Frequencies on pof_profile
-* Improved log scripts on /sdcard/Performance-of-Sadness.log
-* Fixed video color bug (Vulkan Pipeline)
-* Fixed some miscellaneous and scripts
-* Dropped /vendor/bin/perf_profile.sh
-* Dropped /vendor/bin/restore_perf_profile.sh
-* Many under the hood changes.
+<h2>Changelog</h2>
 
-### V7 2025-11-05
-* Fixed some miscellaneous and scripts
+<section>
+  <h3>V8 — 2025-11-17</h3>
+  <ul>
+    <li>Introduced the <strong>Dynamic Vulkan Pipeline Renderer Switch</strong> (applies only when a game is launched)</li>
+    <li>Added new <strong>game-list.pof</strong> file (stores all supported games for Performance of Sadness AI)</li>
+    <li>Added new <strong>Dalvik Hyperthreading</strong></li>
+    <li>Added new <strong>pof_profile.sh</strong> and <strong>pof_restore_profile.sh</strong> scripts</li>
+    <li>Improved <strong>Performance of Sadness AI</strong> logic and efficiency</li>
+    <li>Enhanced <strong>GPU frequency tuning</strong> in <code>pof_profile.sh</code></li>
+    <li>Improved logging at <code>/sdcard/Performance-of-Sadness.log</code></li>
+    <li>Fixed video color issue related to the Vulkan pipeline</li>
+    <li>Fixed various miscellaneous issues and script errors</li>
+    <li>Dropped deprecated scripts:
+      <ul>
+        <li><code>/vendor/bin/perf_profile.sh</code></li>
+        <li><code>/vendor/bin/restore_perf_profile.sh</code></li>
+      </ul>
+    </li>
+    <li>Numerous under-the-hood optimizations and internal changes</li>
+  </ul>
+</section>
 
-### V6 2025-11-04
-* Improved Performance of Sadness AI
-* Introduced new Dynamic CPU Throttling (Zero CPU/RAM usage)
-* Added more games detection of Performance Sadness AI
-* Added CPU/GPU Tuning on Performance of Sadness AI
-* Added Virtual Memory and Memory Tuning on Performance of Sadness AI
-* Added I/O Scheduler Tuning on Performance of Sadness AI
-* Added Background Tasks Pressure Reduction on Performance of Sadness AI
-* Reverted to stock all /vendor/etc/thermal*conf
-* Improved logs at /sdcard/Performance-of-Sadness.log
-* Fixed some miscellaneous and scripts
+<section>
+  <h3>V7 — 2025-11-05</h3>
+  <ul>
+    <li>Minor fixes to miscellaneous components and scripts</li>
+  </ul>
+</section>
 
-### V5 2025-11-03
-* Introduced new Performance of Sadness AI (Zero CPU/RAM usage)
-* Introduced new /vendor/perf_profile.sh
-* Introduced new /vendor/restore_perf_profile.sh
-* Introduced new Performance of Sadness log /sdcard/Performance-of-Sadness.log
-* Switched to vulkan renderthread backend pipeline (Global)
+<section>
+  <h3>V6 — 2025-11-04</h3>
+  <ul>
+    <li>Improved <strong>Performance of Sadness AI</strong></li>
+    <li>Introduced <strong>Dynamic CPU Throttling</strong> (Zero CPU/RAM usage)</li>
+    <li>Expanded game detection capabilities</li>
+    <li>Added <strong>CPU/GPU tuning</strong> options</li>
+    <li>Added <strong>Virtual Memory</strong> and RAM tuning</li>
+    <li>Added <strong>I/O Scheduler tuning</strong></li>
+    <li>Added <strong>Background Task Pressure Reduction</strong></li>
+    <li>Reverted all <code>/vendor/etc/thermal*conf</code> files to stock</li>
+    <li>Improved logging at <code>/sdcard/Performance-of-Sadness.log</code></li>
+    <li>Fixed miscellaneous issues and script errors</li>
+  </ul>
+</section>
 
-### V4 2025-11-02
-* Introduced new Touch Boost system prop
-* Introduced new /vendor/etc/msm_irqbalance.conf
-* Added mdss, smem-rpm, mpm, kgsl, glink_lpass /vendor/etc/msm_irqbalance.conf
+<section>
+  <h3>V5 — 2025-11-03</h3>
+  <ul>
+    <li>Introduced redesigned <strong>Performance of Sadness AI</strong> (Zero CPU/RAM usage)</li>
+    <li>Added new <code>/vendor/perf_profile.sh</code></li>
+    <li>Added new <code>/vendor/restore_perf_profile.sh</code></li>
+    <li>Introduced new logging system at <code>/sdcard/Performance-of-Sadness.log</code></li>
+    <li>Switched globally to <strong>Vulkan renderthread backend pipeline</strong></li>
+  </ul>
+</section>
 
-### V3 2025-10-24
-* Introduced new /vendor/etc/powerhint.json
-* Increased aggressive CPULittleClusterMinFreq /vendor/etc/powerhint.json
-* Increased aggressive CPUBigClusterMinFreq /vendor/etc/powerhint.json
-* Increased aggressive GPUMinFreq /vendor/etc/powerhint.json
-* Increased SUSTAINED_PERFORMANCE CPUBigClusterMaxFreq 1401600 to Highest
-* Increased SUSTAINED_PERFORMANCE CPULittleClusterMaxFreq 1651200 to Highest
-* Increased INTERACTION CPUBigClusterMaxFreq 1228800 to 1651200
-* Reverted to stock /vendor/etc/thermal-class0.conf
-* Reverted to stock /vendor/etc/thermal-camera.conf
-* Reverted to stock /vendor/etc/thermal-phone.conf
-* Reverted to stock /vendor/etc/thermal-video.conf
-* Reverted to stock /vendor/etc/thermal-youtube.conf
+<section>
+  <h3>V4 — 2025-11-02</h3>
+  <ul>
+    <li>Added new <strong>Touch Boost</strong> system property</li>
+    <li>Introduced <code>/vendor/etc/msm_irqbalance.conf</code></li>
+    <li>Added <code>mdss</code>, <code>smem-rpm</code>, <code>mpm</code>, <code>kgsl</code>, and <code>glink_lpass</code> entries</li>
+  </ul>
+</section>
 
-### V2 2025-10-18
-* Removed /vendor/etc/thermal-arvr.conf
-* Removed /vendor/etc/thermal-camera.conf
-* Removed /vendor/etc/thermal-class0.conf
-* Removed /vendor/etc/thermal-engine.conf
-* Removed /vendor/etc/thermal-extreme.conf
-* Removed /vendor/etc/thermal-high.conf
-* Removed /vendor/etc/thermal-map.conf
-* Removed /vendor/etc/thermal-mgame.conf
-* Removed /vendor/etc/thermal-nolimits.conf
-* Removed /vendor/etc/thermal-normal.conf
-* Removed /vendor/etc/thermal-phone.conf
-* Removed /vendor/etc/thermal-tgame.conf
-* Removed /vendor/etc/thermal-video.conf
-* Removed /vendor/etc/thermal-youtube.conf
+<section>
+  <h3>V3 — 2025-10-24</h3>
+  <ul>
+    <li>Added new <code>/vendor/etc/powerhint.json</code></li>
+    <li>Increased aggressive <strong>Little Cluster minimum frequency</strong></li>
+    <li>Increased aggressive <strong>Big Cluster minimum frequency</strong></li>
+    <li>Increased aggressive <strong>GPU minimum frequency</strong></li>
+    <li>Updated <strong>SUSTAINED_PERFORMANCE</strong> and <strong>INTERACTION</strong> CPU maximum frequencies</li>
+    <li>Reverted multiple <code>/vendor/etc/thermal-*.conf</code> files back to stock</li>
+  </ul>
+</section>
 
-### V1 2025-10-17
-* Initial release
+<section>
+  <h3>V2 — 2025-10-18</h3>
+  <ul>
+    <li>Removed multiple thermal configuration files, including:</li>
+    <ul>
+      <li><code>thermal-arvr.conf</code></li>
+      <li><code>thermal-camera.conf</code></li>
+      <li><code>thermal-class0.conf</code></li>
+      <li><code>thermal-engine.conf</code></li>
+      <li><code>thermal-extreme.conf</code></li>
+      <li><code>thermal-high.conf</code></li>
+      <li><code>thermal-map.conf</code></li>
+      <li><code>thermal-mgame.conf</code></li>
+      <li><code>thermal-nolimits.conf</code></li>
+      <li><code>thermal-normal.conf</code></li>
+      <li><code>thermal-phone.conf</code></li>
+      <li><code>thermal-tgame.conf</code></li>
+      <li><code>thermal-video.conf</code></li>
+      <li><code>thermal-youtube.conf</code></li>
+    </ul>
+  </ul>
+</section>
+
+<section>
+  <h3>V1 — 2025-10-17</h3>
+  <ul>
+    <li>Initial release</li>
+  </ul>
+</section>

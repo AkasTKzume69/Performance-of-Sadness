@@ -41,7 +41,7 @@ Includes tuned adjustments for:
 <h2 align="center">⚠️ Warning</h2>
 
 * Your warranty is now **void**.
-* I am **not responsible** for bricked devices, dead SD cards, thermonuclear war, or you getting fired because the alarm app failed.  
+* I am **not responsible** for bricked devices, dead SD cards, thermonuclear war, you getting fired because the alarm app failed or you falling into a hole because your flashlight wouldn’t turn on.
 * Please do some research if you have any concerns about features included in this recovery before flashing it!  
 * **YOU** are choosing to make these modifications, and if you point the finger at me for messing up your device, **i will laugh at you.**
 

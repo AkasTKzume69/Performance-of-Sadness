@@ -6,9 +6,9 @@
     <li>Introduced the <strong>Dynamic Vulkan Pipeline Renderer Switch</strong> (applies only when a game is launched)</li>
     <li>Added new <strong>game-list.pof</strong> file (stores all supported games for Performance of Sadness AI)</li>
     <li>Added new <strong>Dalvik Hyperthreading</strong></li>
-    <li>Added new <strong>pof_profile.sh</strong> and <strong>pof_restore_profile.sh</strong> scripts</li>
+    <li>Added new <strong>pof_profile</strong> and <strong>pof_restore_profile</strong> scripts</li>
     <li>Improved <strong>Performance of Sadness AI</strong> logic and efficiency</li>
-    <li>Enhanced <strong>GPU frequency tuning</strong> in <code>pof_profile.sh</code></li>
+    <li>Enhanced <strong>GPU frequency tuning</strong> in <code>pof_profile</code></li>
     <li>Improved logging at <code>/sdcard/Performance-of-Sadness.log</code></li>
     <li>Fixed video color issue related to the Vulkan pipeline</li>
     <li>Fixed various miscellaneous issues and script errors</li>

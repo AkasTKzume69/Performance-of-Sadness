@@ -3,10 +3,13 @@
 <section>
   <h3>Upcoming V9</h3>
   <ul>
-    <li>Fixed miscellaneous issues and script errors</li>
+    <li>Fixed Current Renderer blank on Performance-of-Sadness.log</li>
   </ul>
   <ul>
     <li>Improved <strong>Performance of Sadness AI</strong> logic and efficiency</li>
+  </ul>
+  <ul>
+    <li>Fixed miscellaneous issues and script errors</li>
   </ul>
 </section>
 

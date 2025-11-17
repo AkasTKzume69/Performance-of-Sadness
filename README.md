@@ -61,7 +61,9 @@ Includes tuned adjustments for:
 ### ✔️ Officially Supported
 - Mobile Legends: Bang Bang – `com.mobile.legends`  
 - Call of Duty: Mobile – `com.activision.callofduty.shooter`
-`com.garena.game.codm`  
+`com.garena.game.codm`
+com.vng.codm
+com.tencent.tmgp.codm
 - PUBG Mobile – `com.tencent.ig`  
 - Genshin Impact – `com.miHoYo.GenshinImpact`  
 - Free Fire – `com.dts.freefireth`  

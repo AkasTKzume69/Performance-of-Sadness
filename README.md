@@ -60,15 +60,18 @@ Includes tuned adjustments for:
 
 ### ✔️ Officially Supported
 - Mobile Legends: Bang Bang – `com.mobile.legends`  
-- Call of Duty: Mobile – `com.activision.callofduty.shooter`
+- Call of Duty: Mobile – 
+`com.activision.callofduty.shooter`  
 `com.garena.game.codm`
-com.vng.codm
-com.tencent.tmgp.codm
+`com.vng.codm`
+`com.tencent.tmgp.codm`  
 - PUBG Mobile – `com.tencent.ig`  
 - Genshin Impact – `com.miHoYo.GenshinImpact`  
 - Free Fire – `com.dts.freefireth`  
 - Roblox – `com.roblox.client`  
 - League of Legends: Wild Rift – `com.riotgames.league.wildrift`
+
+<p align="center"><b>Your game not listed?</b> Request it in the <a href="https://t.me/AkasTKzumeOFFICIAL"><b>Support Group</b></a> so it can be added in the next update 🙂</p>
 
 ---
 

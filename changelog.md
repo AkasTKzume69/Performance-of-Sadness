@@ -1,7 +1,7 @@
 <h2>Changelog</h2>
 
 <section>
-  <h3>Upcoming V9</h3>
+  <h3>V9-20251118</h3>
   <ul>
     <li>Introduced new Toast Notification for Performance of Sadness updates</li>
     <li>Added restore countdown for restoring profile</li>

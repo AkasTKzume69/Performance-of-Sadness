@@ -27,7 +27,7 @@ RestoreAllowed=0      # Restores only after game session
 toast() {
     local msg="$1"
     cmd toast "$msg" 2>/dev/null && return
-    su -lp 2000 -c "cmd notification post -t \"Performance of Sadness\" \"POS_TOAST\" \"$msg\"" >/dev/null 2>&1
+    su -lp 2000 -c "cmd notification post -t \"Performance of Sadness AI\" \"POS_TOAST\" \"$msg\"" >/dev/null 2>&1
 }
 
 # --- Logging ---

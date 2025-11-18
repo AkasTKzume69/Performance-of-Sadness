@@ -1,6 +1,18 @@
 <h2>Changelog</h2>
 
 <section>
+  <h3>V10-20251119</h3>
+  <ul>
+    <li>Switched to <strong>/proc scanning + pidof</strong> Game Detection (Ultra light) instead of using <strong>dumpsys</strong> Game Detection</li>
+    <li>Dropped logs from <code>/sdcard/Performance-of-Sadness.log</code></li>
+    <li>Reduced CPU usage on Game Detection</li>
+    <li>Increased delay Performance of Sadness service on every boot</li>
+    <li>Minor fixes to miscellaneous components and scripts</li>
+    <li>Numerous under-the-hood optimizations and internal changes</li>
+  </ul>
+</section>
+
+<section>
   <h3>V9-20251118</h3>
   <ul>
     <li>Introduced new Toast Notification for Performance of Sadness updates</li>

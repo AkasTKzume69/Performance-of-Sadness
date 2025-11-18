@@ -12,27 +12,21 @@
 # ==========================================================
 
 # --- Main Variables ---
-POSid="Performance of Sadness AI"
-Logfile="/sdcard/Performance-of-Sadness.log"
+POSid="Performance of Sadness"
+POSidai="Performance of Sadness AI"
 Games="/vendor/etc/game-list.pos"
 Performance_Script="/vendor/bin/perf_profile.pos"
 Restore_Script="/vendor/bin/perf_profile_restore.pos"
 Marker="/data/local/tmp/.perf_active"
 Vulkan_Applied=0
-LastApp=""
-GameActive=0          # Prevents restore on fresh boot
-RestoreAllowed=0      # Restores only after game session
+GameActive=0
+RestoreAllowed=0
 
 # --- Toast ---
 toast() {
     local msg="$1"
     cmd toast "$msg" 2>/dev/null && return
-    su -lp 2000 -c "cmd notification post -t \"Performance of Sadness AI\" \"POS_TOAST\" \"$msg\"" >/dev/null 2>&1
-}
-
-# --- Logging ---
-log() {
-    echo "$(date '+%Y-%m-%d %H:%M:%S') $1" >> "$Logfile"
+    su -lp 2000 -c "cmd notification post -t \"$POSidai\" \"POS_TOAST\" \"$msg\"" >/dev/null 2>&1
 }
 
 # --- Check script exec ---
@@ -40,44 +34,13 @@ script_ok() {
     [ -x "$1" ]
 }
 
-sleep 35
+# --- Give a time to fully start system ---
+sleep 60
 
-# --- Clear logs every boot ---
-> "$Logfile"
-
-# --- Check Required Files ---
-if [ ! -r "$Games" ]; then
-    log "[$POSid] ERROR: Game list not found or unreadable!"
-    exit 1
-fi
-if ! grep -qE '[^[:space:]]' "$Games"; then
-    log "[$POSid] ERROR: Game list is empty!"
-    exit 1
-fi
-if [ ! -r "$Performance_Script" ]; then
-    log "[$POSid] ERROR: Performance Script not found!"
-    exit 1
-fi
-if ! grep -qE '[^[:space:]]' "$Performance_Script"; then
-    log "[$POSid] ERROR: Performance Script is empty!"
-    exit 1
-fi
-if [ ! -r "$Restore_Script" ]; then
-    log "[$POSid] ERROR: Restore Script not found!"
-    exit 1
-fi
-if ! grep -qE '[^[:space:]]' "$Restore_Script"; then
-    log "[$POSid] ERROR: Restore Script is empty!"
-    exit 1
-fi
-
-# --- Device Info ---
-echo "Device: $(getprop ro.product.marketname)"       >> "$Logfile"
-echo "Brand: $(getprop ro.product.brand)"             >> "$Logfile"
-echo "Model: $(getprop ro.product.model)"             >> "$Logfile"
-echo "Codename: $(getprop ro.product.device)"         >> "$Logfile"
-echo "ROM: $(getprop ro.build.flavor)"                >> "$Logfile"
-echo "Renderer: $(getprop debug.hwui.renderer)"       >> "$Logfile"
+# ----------------------------------------------------------
+# BOOT TOAST (WELCOME NOTE)
+# ----------------------------------------------------------
+toast "Thank you for using $POSid module☺️🇵🇭"
 
 # ==========================================================
 # Helper Functions
@@ -85,7 +48,6 @@ echo "Renderer: $(getprop debug.hwui.renderer)"       >> "$Logfile"
 
 apply_vulkan() {
     if [ "$Vulkan_Applied" -eq 0 ]; then
-        log "[$POSid] Applying Vulkan Renderer..."
         toast "Applying Vulkan Renderer..."
 
         setprop debug.hwui.renderer skiavk
@@ -94,6 +56,7 @@ apply_vulkan() {
         setprop debug.hwui.disable_vulkan 0
         setprop debug.hwui.use_buffer_age false
 
+        # Restart any detected game process
         running_game=""
         for pkg in $(cat "$Games"); do
             if pidof "$pkg" >/dev/null 2>&1; then
@@ -103,21 +66,18 @@ apply_vulkan() {
         done
 
         if [ -n "$running_game" ]; then
-            log "[$POSid] Force-stopping and relaunching $running_game"
             am force-stop "$running_game"
             sleep 2
             monkey -p "$running_game" -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1
         fi
 
         Vulkan_Applied=1
-        log "[$POSid] Vulkan renderer applied."
         toast "Vulkan Applied"
     fi
 }
 
 restore_opengl() {
     if [ "$Vulkan_Applied" -eq 1 ]; then
-        log "[$POSid] Restoring OpenGL renderer..."
         toast "Restoring OpenGL..."
 
         setprop debug.hwui.renderer opengl
@@ -126,13 +86,11 @@ restore_opengl() {
         sync
 
         Vulkan_Applied=0
-        log "[$POSid] OpenGL Restored."
     fi
 }
 
 apply_profile() {
     if [ ! -f "$Marker" ]; then
-        log "[$POSid] Applying performance profile..."
         toast "Performance Profile Applied"
         touch "$Marker"
         script_ok "$Performance_Script" && sh "$Performance_Script" >/dev/null 2>&1 &
@@ -141,50 +99,36 @@ apply_profile() {
 
 restore_profile() {
     if [ -f "$Marker" ]; then
-        log "[$POSid] Restoring default profile..."
         toast "Restoring Performance Profile..."
         rm -f "$Marker"
         script_ok "$Restore_Script" && sh "$Restore_Script" >/dev/null 2>&1 &
     fi
-    toast "Restore Completed..."
+    toast "Restore default profile completed..."
 }
 
-log "[$POSid] Service started."
-
 # ==========================================================
-# Foreground Detection
+# PIDOF-Based Game Detection (Optimized)
 # ==========================================================
 
 NoGameTimer=0
 
 while true; do
-    top_app=$(dumpsys window | grep mCurrentFocus | sed 's/.*u0 //;s/\/.*//' | awk '{print $NF}')
+    game_found=""
+    # Loop through game list and check if any process is running
+    for pkg in $(cat "$Games"); do
+        if pidof "$pkg" >/dev/null 2>&1; then
+            game_found="$pkg"
+            break
+        fi
+    done
 
-    # -------------------------------
-    # Ignore SystemUI overlays:
-    # if no dot -> NOT an app or game
-    # -------------------------------
-    case "$top_app" in
-        *.*) ;;  # valid app
-        *) sleep 1; continue ;;
-    esac
-
-    # Log app changes only
-    if [ "$top_app" != "$LastApp" ]; then
-        LastApp="$top_app"
-        log "[$POSid] Foreground App: $top_app"
-    fi
-
-    # ========= GAME DETECTED =========
-    if grep -q "^$top_app$" "$Games"; then
+    if [ -n "$game_found" ]; then
+        # Game detected
         NoGameTimer=0
-
-        # Allow restoring later
         RestoreAllowed=1
 
         if [ $GameActive -eq 0 ]; then
-            log "[$POSid] Game detected: $top_app"
-            toast "Game detected: $top_app"
+            toast "Game detected: $game_found"
             GameActive=1
         fi
 
@@ -195,34 +139,30 @@ while true; do
         continue
     fi
 
-    # ========= NO GAME DETECTED =========
+    # No game detected
     if [ $GameActive -eq 1 ]; then
-        log "[$POSid] Game closed, starting countdown..."
         toast "Game closed, countdown started..."
         GameActive=0
     fi
 
     NoGameTimer=$((NoGameTimer + 2))
 
-    # Only restore if a game was previously detected
     if [ $RestoreAllowed -eq 1 ]; then
         case "$NoGameTimer" in
             2)
-                log "[$POSid] Automatically restore to default if no game detected in 20 seconds)"
                 toast "Automatically restore to default if no game detected in 20 seconds"
                 ;;
             20)
-                log "[$POSid] No game detected (20 seconds)"
                 toast "No game detected (20 seconds)"
 
                 restore_opengl
                 restore_profile
 
-                RestoreAllowed=0   # <-- Prevent further restore until next game
+                RestoreAllowed=0
                 NoGameTimer=0
                 ;;
         esac
     fi
 
     sleep 2
-done &
+done

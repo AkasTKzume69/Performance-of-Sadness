@@ -208,16 +208,32 @@ ui_print " "
 ui_print "=============================================="
 ui_print "                   WARNING"
 ui_print "=============================================="
-ui_print "• Your warranty is now **void**."
-ui_print "• I am NOT responsible for:"
-ui_print "    – Bricked devices"
-ui_print "    – Dead SD cards"
-ui_print "    – Thermonuclear war"
-ui_print "    – You getting fired because your alarm app failed"
-ui_print "    – You falling into a hole because your flashlight broke"
-ui_print "• Please research first if you have concerns!"
-ui_print "• YOU chose to flash this. If you blame me for breaking your device,"
-ui_print "  I will laugh at you. :)"
+ui_print "• Your warranty is now void."
+sleep 2.0
+ui_print "• I am NOT responsible for bricked device"
+sleep 2.0
+ui_print " dead SD cards, thermonuclear war, you"
+sleep 2.0
+ui_print " getting fired because your alarm app"
+sleep 2.0
+ui_print " failed, or you falling into a hole because"
+sleep 2.0
+ui_print " your flashlight wouldn’t turn on."
+sleep 2.0
+ui_print "• Please do some research if you have any"
+sleep 2.0
+ui_print " concerns about the features included in"
+sleep 2.0
+ui_print " this module before flashing it"
+sleep 2.0
+ui_print "• YOU are choosing to make these"
+sleep 2.0
+ui_print " modifications, and if you point the finger"
+sleep 2.0
+ui_print " at me for messing up your device,"
+sleep 2.0
+ui_print " I will laugh at you."
+sleep 2.0
 ui_print "=============================================="
 ui_print " "
 ui_print " "

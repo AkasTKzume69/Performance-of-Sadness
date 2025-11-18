@@ -383,7 +383,7 @@ sleep 0.4
 
 [ -f "$MODPATH/common/install.sh" ] && . $MODPATH/common/install.sh
 
-ui_print "☑ Target Architecture: ARM, ARM64, ARM128..."
+ui_print "☑ Target Architecture: arm32, arm64, arm128..."
 ui_print "☑ Your Architecture is $ARCH"
 ui_print "☑ Installing for $ARCH SDK $API device..."
 # Remove comments from files and place them, add blank line to end if not already present

@@ -1,9 +1,9 @@
 <h2>Changelog</h2>
 
 <section>
-  <h3>V10 Upcoming Update</h3>
+  <h3>V10-20251120</h3>
   <ul>
-    <li>Switched to <strong>logcat (Event-Based) </strong> Game Detection (Extreme lightweight)</li>
+    <li>Switched to <strong>logcat (Event-Based) </strong> Game Detection (Extremely Optimized)</li>
     <li>Dropped logs from <code>/sdcard/Performance-of-Sadness.log</code></li>
     <li>Reduced CPU usage on Game Detection</li>
     <li>Improved start of Performance of Sadness service on every boot</li>

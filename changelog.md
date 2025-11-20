@@ -8,6 +8,7 @@
     <li>Reduced CPU usage on Game Detection</li>
     <li>Optimized performance and renderer switching</li>
     <li>Improved start of Performance of Sadness AI and service on every boot</li>
+    <li>Added more supported games</li>
     <li>Major fixes to miscellaneous components and scripts</li>
     <li>Numerous under-the-hood optimizations and internal changes</li>
   </ul>

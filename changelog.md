@@ -6,7 +6,8 @@
     <li>Switched to <strong>logcat (Event-Based) </strong> Game Detection (Extremely Optimized)</li>
     <li>Dropped logs from <code>/sdcard/Performance-of-Sadness.log</code></li>
     <li>Reduced CPU usage on Game Detection</li>
-    <li>Improved start of Performance of Sadness service on every boot</li>
+    <li>Optimized performance and renderer switching</li>
+    <li>Improved start of Performance of Sadness AI and service on every boot</li>
     <li>Major fixes to miscellaneous components and scripts</li>
     <li>Numerous under-the-hood optimizations and internal changes</li>
   </ul>

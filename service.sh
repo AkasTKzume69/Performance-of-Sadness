@@ -12,157 +12,190 @@
 # ==========================================================
 
 # --- Main Variables ---
-POSid="Performance of Sadness"
-POSidai="Performance of Sadness AI"
-Games="/vendor/etc/game-list.pos"
-Performance_Script="/vendor/bin/perf_profile.pos"
-Restore_Script="/vendor/bin/perf_profile_restore.pos"
-Marker="/data/local/tmp/.perf_active"
-Vulkan_Applied=0
-GameActive=0
-RestoreAllowed=0
+POS_ID="Performance of Sadness"
+POS_ID_AI="Performance of Sadness AI"
+POS_Service="/data/local/tmp/pos-service.sh"
 
-# --- Toast ---
 toast() {
     local msg="$1"
     cmd toast "$msg" 2>/dev/null && return
-    su -lp 2000 -c "cmd notification post -t \"$POSidai\" \"POS_TOAST\" \"$msg\"" >/dev/null 2>&1
+    su -lp 2000 -c "cmd notification post -t \"$POS_ID_AI\" \"POS_TOAST\" \"$msg\"" >/dev/null 2>&1
 }
 
-# --- Check script exec ---
-script_ok() {
-    [ -x "$1" ]
-}
+# --- Wait until device fully boot ---
+sleep 20
+toast "Setting up $POS_ID"
+sleep 5
 
-# --- Give a time to fully start system ---
-sleep 60
-
-# ----------------------------------------------------------
-# BOOT TOAST (WELCOME NOTE)
-# ----------------------------------------------------------
-toast "Thank you for using $POSid module☺️🇵🇭"
-
+# --- Create detection script ---
+cat > "$POS_Service" <<'EOF'
+#!/system/bin/sh
 # ==========================================================
+# Performance of Sadness
+# Copyright (C) 2025  AkasTKzume
+#
+# This script is part of the "Performance of Sadness" project.
+# Unauthorized copying, modification, or distribution of this file,
+# via any medium, is strictly prohibited without prior permission.
+#
+# Licensed under the GNU General Public License v3.0 (GPLv3)
+# Author: AkasTKzume
+# ==========================================================
+
+# --- Main Variables ---
+POS_ID="Performance of Sadness"
+POS_ID_AI="Performance of Sadness AI"
+
+# ------------------------------
 # Helper Functions
-# ==========================================================
+# ------------------------------
+toast() {
+    local msg="$1"
+    cmd toast "$msg" 2>/dev/null && return
+    su -lp 2000 -c "cmd notification post -t \"$POS_ID_AI\" \"POS_TOAST\" \"$msg\"" >/dev/null 2>&1
+}
 
-apply_vulkan() {
-    if [ "$Vulkan_Applied" -eq 0 ]; then
-        toast "Applying Vulkan Renderer..."
+script_ok() {
+    [ -f "$1" ] && [ -x "$1" ]
+}
 
-        setprop debug.hwui.renderer skiavk
-        sleep 1
-        sync
-        setprop debug.hwui.disable_vulkan 0
-        setprop debug.hwui.use_buffer_age false
 
-        # Restart any detected game process
-        running_game=""
-        for pkg in $(cat "$Games"); do
-            if pidof "$pkg" >/dev/null 2>&1; then
-                running_game="$pkg"
-                break
+# ------------------------------
+# Configuration (Do not modify)
+# ------------------------------
+GAME_LIST="/vendor/etc/game-list.pos"                  # Path to your game list
+Performance_Script="/vendor/bin/perf_profile.pos"   # Replace with YOUR performance script path
+Restore_Script="/vendor/bin/perf_profile_restore.pos"    # Replace with YOUR restore script path
+
+
+# ------------------------------
+# Tracking Variables
+# ------------------------------
+CURRENT_PKG=""       # Current active app package
+IS_GAME=0            # 1 if current app is a game, 0 otherwise
+PREV_IS_GAME=0       # Previous app's game state
+RESTORE_PID=""       # PID of the 20s restore countdown process
+
+
+# ------------------------------
+# Initial Checks
+# ------------------------------
+# Verify game list exists
+if [ ! -f "$GAME_LIST" ]; then
+    toast "Error: Game list not found at $GAME_LIST"
+    exit 1
+fi
+
+# Warn if performance/restore scripts are missing
+[ ! -f "$Performance_Script" ] && toast "Warning: Performance script not found!"
+[ ! -f "$Restore_Script" ] && toast "Warning: Restore script not found!"
+
+
+# ------------------------------
+# MAIN GAME DETECTION LOOP
+# ------------------------------
+logcat -b events -v brief | grep --line-buffered "input_focus" | while read -r line; do
+    # Extract package name from logcat line
+    pkg=$(echo "$line" | sed -n 's/.*Focus .* \([^ ]*\)\/.*/\1/p')
+
+    # Skip empty packages or system components (no dot in name)
+    [ -z "$pkg" ] && continue
+    echo "$pkg" | grep -q "\." || continue
+
+    # Skip duplicate packages (avoid spam/CPU usage)
+    [ "$pkg" = "$CURRENT_PKG" ] && continue
+
+    # Update current active package
+    CURRENT_PKG="$pkg"
+
+
+    # ------------------------------
+    # Check if app is a game
+    # ------------------------------
+    if grep -qxF "$pkg" "$GAME_LIST"; then
+        IS_GAME=1
+    else
+        IS_GAME=0
+    fi
+
+
+    # ------------------------------
+    # Process game detection
+    # ------------------------------
+    if [ "$IS_GAME" -eq 1 ]; then
+        local RETURNED_FROM_COUNTDOWN=0
+
+        # ONLY cancel countdown if process is STILL running (fixes dead PID issue)
+        if [ -n "$RESTORE_PID" ] && kill -0 "$RESTORE_PID" 2>/dev/null; then
+            kill "$RESTORE_PID" 2>/dev/null
+            unset RESTORE_PID
+            RETURNED_FROM_COUNTDOWN=1
+            toast "Game Detected — $CURRENT_PKG"
+        fi
+
+        # Apply profile/renderer ONLY if:
+        # 1. Coming from a non-game OR
+        # 2. First time launching the game (PREV_IS_GAME=0)
+        # AND not returning from a countdown (to avoid restarting)
+        if [ "$PREV_IS_GAME" -eq 0 ] && [ "$RETURNED_FROM_COUNTDOWN" -eq 0 ]; then
+            # Apply performance profile
+            if script_ok "$Performance_Script"; then
+                toast "Applying Performance Profile"
+                sh "$Performance_Script" >/dev/null 2>&1 &
+                toast "Performance Profile Applied"
+            else
+                toast "Error: Failed to run Performance Script"
             fi
-        done
 
-        if [ -n "$running_game" ]; then
-            am force-stop "$running_game"
-            sleep 2
-            monkey -p "$running_game" -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1
+            # Apply Vulkan renderer and restart game
+            toast "Applying Vulkan Renderer..."
+            setprop debug.hwui.renderer skiavk
+            sleep 1
+            toast "Restarting $CURRENT_PKG to apply changes..."
+            am force-stop "$CURRENT_PKG"
+            sleep 2  # Ensure app is fully closed before relaunch
+            monkey -p "$CURRENT_PKG" -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1
+            toast "Vulkan Applied — $CURRENT_PKG restarted"
         fi
 
-        Vulkan_Applied=1
-        toast "Vulkan Applied"
-    fi
-}
+        # Update previous game state
+        PREV_IS_GAME=1
 
-restore_opengl() {
-    if [ "$Vulkan_Applied" -eq 1 ]; then
-        toast "Restoring OpenGL..."
 
-        setprop debug.hwui.renderer opengl
-        setprop debug.hwui.disable_vulkan 1
-        setprop debug.hwui.use_buffer_age true
-        sync
+    # ------------------------------
+    # Process non-game app
+    # ------------------------------
+    else
+        # Start 20s restore countdown ONLY if coming from a game
+        if [ "$PREV_IS_GAME" -eq 1 ]; then
+            toast "No game detected — Restoring Default Profile in 20s..."
+            (
+                sleep 20
+                # Restore OpenGL renderer
+                toast "Restoring OpenGL Renderer..."
+                setprop debug.hwui.renderer opengl
 
-        Vulkan_Applied=0
-    fi
-}
-
-apply_profile() {
-    if [ ! -f "$Marker" ]; then
-        toast "Performance Profile Applied"
-        touch "$Marker"
-        script_ok "$Performance_Script" && sh "$Performance_Script" >/dev/null 2>&1 &
-    fi
-}
-
-restore_profile() {
-    if [ -f "$Marker" ]; then
-        toast "Restoring Performance Profile..."
-        rm -f "$Marker"
-        script_ok "$Restore_Script" && sh "$Restore_Script" >/dev/null 2>&1 &
-    fi
-    toast "Restore default profile completed..."
-}
-
-# ==========================================================
-# PIDOF-Based Game Detection (Optimized)
-# ==========================================================
-
-NoGameTimer=0
-
-while true; do
-    game_found=""
-    # Loop through game list and check if any process is running
-    for pkg in $(cat "$Games"); do
-        if pidof "$pkg" >/dev/null 2>&1; then
-            game_found="$pkg"
-            break
-        fi
-    done
-
-    if [ -n "$game_found" ]; then
-        # Game detected
-        NoGameTimer=0
-        RestoreAllowed=1
-
-        if [ $GameActive -eq 0 ]; then
-            toast "Game detected: $game_found"
-            GameActive=1
+                # Restore default performance profile
+                if script_ok "$Restore_Script"; then
+                    toast "Restoring Default Profile"
+                    sh "$Restore_Script" >/dev/null 2>&1 &
+                    toast "Default Profile Restored"
+                else
+                    toast "Error: Failed to run Restore Script"
+                fi
+                # Note: Can't unset RESTORE_PID here (subshell can't modify parent)
+            ) &
+            RESTORE_PID=$!  # Save PID to cancel later if needed
         fi
 
-        apply_vulkan
-        apply_profile
-
-        sleep 2
-        continue
+        # Update previous game state
+        PREV_IS_GAME=0
     fi
 
-    # No game detected
-    if [ $GameActive -eq 1 ]; then
-        toast "Game closed, countdown started..."
-        GameActive=0
-    fi
-
-    NoGameTimer=$((NoGameTimer + 2))
-
-    if [ $RestoreAllowed -eq 1 ]; then
-        case "$NoGameTimer" in
-            2)
-                toast "Automatically restore to default if no game detected in 20 seconds"
-                ;;
-            20)
-                toast "No game detected (20 seconds)"
-
-                restore_opengl
-                restore_profile
-
-                RestoreAllowed=0
-                NoGameTimer=0
-                ;;
-        esac
-    fi
-
-    sleep 2
 done
+EOF
+
+chmod 755 "$POS_Service"
+su -c "$POS_Service &"
+toast "Hello! Thank you for using $POS_ID module☺️🇵🇭"
+sleep 3

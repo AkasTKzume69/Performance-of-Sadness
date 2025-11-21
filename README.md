@@ -47,8 +47,6 @@ Includes tuned adjustments for:
 - Memory management  
 - Smoothness and stability improvements
 
-### 📄 Logging  
-- Logs events, detections, and optimization actions for easier debugging and tracking.
 ---
 
 <h2 align="center">🎯 Supported Games</h2>

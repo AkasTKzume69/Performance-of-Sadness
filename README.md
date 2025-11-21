@@ -196,3 +196,8 @@ Includes tuned adjustments for:
   <img src="https://img.shields.io/badge/Min_Magisk-20.4-red?style=flat-square" alt="Min Magisk"/>
   <img src="https://img.shields.io/badge/Min_KernelSU-0.6.6-red?style=flat-square" alt="Min KernelSU"/>
 </div>
+
+---
+
+<h2 align="center">Special Thanks:</h2>
+* <strong>Zackptg5</strong> for module template

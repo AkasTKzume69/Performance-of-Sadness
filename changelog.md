@@ -1,7 +1,7 @@
 <h2>Changelog</h2>
 
 <section>
-  <h3>V11-20251121</h3>
+  <h3>V11-20251122</h3>
   <ul>
     <li>Introduced new UFS Health Checker</li>
     <li>Dropped all ALPHA and BETA tweaks</li>

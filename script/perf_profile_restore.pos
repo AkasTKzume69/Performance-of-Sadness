@@ -1,0 +1,64 @@
+#!/bin/sh
+# ==========================================================
+# Performance of Sadness
+# Copyright (C) 2025  AkasTKzume
+#
+# This script is part of the "Performance of Sadness" project.
+# Unauthorized copying, modification, or distribution of this file,
+# via any medium, is strictly prohibited without prior permission
+# from the author.
+#
+# Licensed under the GNU General Public License v3.0 (GPLv3)
+# You may obtain a copy of the License at:
+#     https://www.gnu.org/licenses/gpl-3.0.html
+#
+# Author: AkasTKzume
+# ==========================================================
+
+# --- Restore CPU Default Frequencies ---
+#echo 1804800 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+#echo 1804800 > /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
+#echo 1804800 > /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq
+#echo 1804800 > /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq
+#echo 1804800 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+#echo 1804800 > /sys/devices/system/cpu/cpu5/cpufreq/scaling_max_freq
+#echo 2208000 > /sys/devices/system/cpu/cpu6/cpufreq/scaling_max_freq
+#echo 2208000 > /sys/devices/system/cpu/cpu7/cpufreq/scaling_max_freq
+
+# --- Restore GPU Defaults ---
+echo 266000000 > /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 2>/dev/null
+echo 840000000 > /sys/class/kgsl/kgsl-3d0/devfreq/max_freq 2>/dev/null
+echo 0 > /sys/class/kgsl/kgsl-3d0/force_clk_on 2>/dev/null
+echo 0 > /sys/class/kgsl/kgsl-3d0/force_rail_on 2>/dev/null
+echo 0 > /sys/class/kgsl/kgsl-3d0/force_bus_on 2>/dev/null
+echo 1 > /sys/class/kgsl/kgsl-3d0/bus_split 2>/dev/null
+echo 80 > /sys/class/kgsl/kgsl-3d0/idle_timer 2>/dev/null
+
+# --- Restore I/O Defaults ---
+for i in /sys/block/*/queue; do
+echo 128 > $i/read_ahead_kb 2>/dev/null
+echo 128 > $i/nr_requests 2>/dev/null
+echo 1 > $i/write_cache 2>/dev/null
+echo 1 > $i/add_random 2>/dev/null
+echo 1 > $i/iostats 2>/dev/null
+echo 0 > $i/nomerges 2>/dev/null
+done
+
+# --- Restore VM & Memory Defaults ---
+echo 20 > /proc/sys/vm/dirty_ratio
+echo 10 > /proc/sys/vm/dirty_background_ratio
+echo 75 > /proc/sys/vm/swappiness
+echo 100 > /proc/sys/vm/vfs_cache_pressure
+echo 1024 > /proc/sys/vm/min_free_kbytes
+
+# --- Restore Background Task Scheduling Defaults ---
+echo 0 > /dev/stune/background/schedtune.boost 2>/dev/null
+echo 1 > /dev/stune/background/schedtune.prefer_idle 2>/dev/null
+echo 0 > /dev/stune/top-app/schedtune.boost 2>/dev/null
+echo 1 > /dev/stune/top-app/schedtune.prefer_idle 2>/dev/null
+
+# --- Revert Props (safe reset) ---
+#resetprop debug.hwui.disable_vsync
+#resetprop debug.sf.latch_unsignaled
+#resetprop debug.sf.enable_hwc_vds
+#resetprop debug.performance.tuning

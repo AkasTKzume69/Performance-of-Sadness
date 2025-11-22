@@ -200,4 +200,4 @@ Includes tuned adjustments for:
 ---
 
 <h2 align="center">Special Thanks:</h2>
-* <strong>Zackptg5</strong> for module template
+<a><strong>Zackptg5</strong> for module template</a>

@@ -4,6 +4,7 @@
   <h3>V11-20251121</h3>
   <ul>
     <li>Introduced new UFS Health Checker</li>
+    <li>Dropped all ALPHA and BETA tweaks</li>
     <li>Minor adjustments and fixes to miscellaneous components and scripts</li>
   </ul>
 </section>

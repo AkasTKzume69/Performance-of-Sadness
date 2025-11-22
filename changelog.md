@@ -3,7 +3,7 @@
 <section>
   <h3>V11-20251121</h3>
   <ul>
-    <li>Introduced new Obfuscated version so CPU can execute the binary directly (No need for the shell to parse or interpret the code first).</li>
+    <li>Introduced new UFS Health Checker</li>
     <li>Minor adjustments and fixes to miscellaneous components and scripts</li>
   </ul>
 </section>

@@ -12,13 +12,20 @@
 # ==========================================================
 
 # --- Main Variables ---
-POS="/data/adb/modules/performance-of-sadness/POS/POS.sh"
+POS="/data/adb/modules/pos/scripts/POS.sh"
+Performance_Script="/data/adb/modules/pos/scripts/perf_profile.pos"   # Replace with YOUR performance script path
+Restore_Script="/data/adb/modules/pos/scripts/perf_profile_restore.pos"    # Replace with YOUR restore script path
+UFS_Checker="/data/adb/modules/pos/scripts/UFS_Checker.sh"
 
 # --- Wait until device fully boot ---
 sleep 20
 
 # --- Set permission ---
 chmod 755 "$POS"
+chmod 777 "$Performance_Script"
+chmod 777 "$Restore_Script"
+chmod 755 "$UFS_Checker"
 
-# --- Execute Performance of Sadness AI ---
+# --- Execute Scripts ---
 su -c "$POS &"
+su -c "$UFS_Checker &"

@@ -1,7 +1,7 @@
 id=pos
 name=Performance of Sadness (Stable)
-version=V11-20251122
-versionCode=20251122
+version=V11-20251123
+versionCode=20251123
 author=AkasTKzume
 description=Only for Redmi Note 11 Pro 5G and Poco X4 Pro 5G (Veux and Peux).
 updateJson=https://raw.githubusercontent.com/AkasTKzume69/Performance-of-Sadness/master/update.json

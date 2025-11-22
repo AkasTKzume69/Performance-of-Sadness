@@ -195,7 +195,7 @@ Includes tuned adjustments for:
 ---
 
 <div align="center">
-  <img src="https://img.shields.io/badge/Latest_Version-V10_20251119-green?style=for-the-badge" alt="Version"/>
+  <img src="https://img.shields.io/badge/Latest_Version-V11_20251123-green?style=for-the-badge" alt="Version"/>
   <img src="https://img.shields.io/badge/Min_Magisk-20.4-red?style=flat-square" alt="Min Magisk"/>
   <img src="https://img.shields.io/badge/Min_KernelSU-0.6.6-red?style=flat-square" alt="Min KernelSU"/>
 </div>

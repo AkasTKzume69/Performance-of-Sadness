@@ -148,6 +148,9 @@ Includes tuned adjustments for:
   </li>
 </ul>
 
+  <li>Whiteout Survival – <br>
+    <code>com.gof.global</code><br>
+  </li>
 
 <p align="center"><b>Your game not listed?</b> Request it in the <a href="https://t.me/AkasTKzumeOFFICIAL"><b>Support Group</b></a> so it can be added in the next update 🙂</p>
 

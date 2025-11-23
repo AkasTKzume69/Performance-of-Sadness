@@ -46,7 +46,7 @@ create_whitelist() {
     sleep 30
     if [ ! -f "$WHITE_LIST" ]; then
         echo "# Add your allowed packages here" > "$WHITE_LIST"
-        echo "Example:" >> "$WHITE_LIST"
+        echo "# Example:" >> "$WHITE_LIST"
         echo "com.android.systemui" >> "$WHITE_LIST"
         echo "com.android.launcher3" >> "$WHITE_LIST"
         echo "com.android.settings" >> "$WHITE_LIST"

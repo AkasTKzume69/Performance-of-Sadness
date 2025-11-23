@@ -24,7 +24,7 @@
  - Smart game detection via logcat (Event-driven, with near-zero CPU usage: ~0.1%)
  - Auto-applies performance profile for games (CPU, GPU, I/O, and memory tweaks)
  - Dynamically switches to Vulkan Renderer for smoother gaming (restores to default when no game is running)
- - Force-stops background user apps (excluding whitelisted apps) to free up system resources
+ - When game is detected it automatically force-stops background user apps (excluding whitelisted apps on `/sdcard/whitelist.prop`) to free up system resources
  - Auto-creates a whitelist file on first boot (editable via `/sdcard/whitelist.prop`)
  - UFS Health Checker monitors storage wear (sends detailed toast notifications)
  - Systemless installation — no permanent changes to your device’s firmware; fully restores on module uninstall

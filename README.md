@@ -11,7 +11,7 @@
 [![Installation Guide](https://img.shields.io/badge/Install-Guide-yellow)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/common/installation.md)
 [![Whitelist Tutorial](https://img.shields.io/badge/Whitelist-Tutorial-orange)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/common/whitelist.md)
 [![Support Group](https://img.shields.io/badge/Support-Telegram-blueviolet)](https://t.me/AkasTKzumeOFFICIAL)
-[![Latest Release](https://img.shields.io/badge/Latest-Release-green)](https://github.com/AkasTKzume69/Performance-of-Sadness/releases)
+[![Release](https://img.shields.io/badge/Release-green)](https://github.com/AkasTKzume69/Performance-of-Sadness/releases)
 
 ## ⚠️ WARNING
 

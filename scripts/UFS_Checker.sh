@@ -112,17 +112,10 @@ BAR_B=$(bar "$P_B")
 # ------------------------------
 # Toast Notification Message
 # ------------------------------
-msg="𝐋𝐢𝐟𝐞 𝐀
-$BAR_A
-
-𝐋𝐢𝐟𝐞 𝐁
-$BAR_B
-
-𝐄𝐎𝐋 𝐒𝐭𝐚𝐭𝐮𝐬
-$P_E
-
-Full bars = end-of-life."
-
+msg="𝐋𝐢𝐟𝐞 𝐀: $BAR_A
+𝐋𝐢𝐟𝐞 𝐁: $BAR_B
+𝐄𝐎𝐋 𝐒𝐭𝐚𝐭𝐮𝐬: $P_E
+Full bars = End of life"
 toast "$msg"
 
 # ------------------------------

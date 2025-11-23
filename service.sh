@@ -13,19 +13,27 @@
 
 # --- Main Variables ---
 POS="/data/adb/modules/pos/scripts/POS.sh"
-Performance_Script="/data/adb/modules/pos/scripts/perf_profile.pos"   # Replace with YOUR performance script path
-Restore_Script="/data/adb/modules/pos/scripts/perf_profile_restore.pos"    # Replace with YOUR restore script path
+Performance_Script="/data/adb/modules/pos/scripts/perf_profile.pos"
+Restore_Script="/data/adb/modules/pos/scripts/perf_profile_restore.pos"
 UFS_Checker="/data/adb/modules/pos/scripts/UFS_Checker.sh"
+All_Apps="/data/adb/modules/pos/scripts/All_Apps.sh"
 
 # --- Wait until device fully boot ---
 sleep 20
 
-# --- Set permission ---
+# --- Set permissions ---
 chmod 755 "$POS"
 chmod 777 "$Performance_Script"
 chmod 777 "$Restore_Script"
 chmod 755 "$UFS_Checker"
+chmod 755 "$All_Apps"
 
-# --- Execute Scripts ---
-su -c "$POS &"
-su -c "$UFS_Checker &"
+# --- Execute Scripts Sequentially ---
+su -c "$UFS_Checker"
+# Only proceed when UFS_Checker is done
+su -c "$All_Apps"
+# Only proceed when All_Apps is done
+su -c "$POS"
+
+# Exit to prevent further execution
+exit 0

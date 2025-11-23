@@ -94,4 +94,4 @@
   </li>
   </ul>
 
-  <p align="center"><b>Your game not listed?</b> Request it in the <a href="https://t.me/AkasTKzumeOFFICIAL"><b>Support Group</b></a> so it can be added in the next update 🙂</p>
+  <p align="center"><b>Is your game not listed?</b> Request it in the <a href="https://t.me/AkasTKzumeOFFICIAL"><b>Support Group</b></a> so it can be added in the next update 🙂</p>

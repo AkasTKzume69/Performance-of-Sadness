@@ -1,4 +1,11 @@
-
+### V12-20251123 ###
+* Added force stop user apps when game detected
+* Added whitelist.prop on /sdcard/whitelist.prop to exclude packages on force stop user apps
+* Reverted to stock msm-irqbalance.conf
+* Dropped powerhint.json (since veux/peux not implement yet)
+* Nuked all ALPHA and BETA tweaks
+* Improved Performance of Sadness AI
+* Minor fixes to miscellaneous components and scripts
 ### V11-20251122 ###
 * Introduced new UFS Health Checker
 * Dropped all ALPHA and BETA tweaks

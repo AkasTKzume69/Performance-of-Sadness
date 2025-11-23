@@ -1,8 +1,8 @@
-<h1 align="center">Performance of Sadness</h1>
+<h2 align="center">Performance of Sadness</h2>
   <img src="https://raw.githubusercontent.com/AkasTKzume69/Performance-of-Sadness/master/common/banner.png" alt="Performance of Sadness Banner" width="100%">
 </p>
 
-A lightweight Magisk/KernelSU module designed to boost gaming performance and optimize system resources on Android devices — all **systemlessly** installed.
+<p align="center">A lightweight Magisk/KernelSU module designed to boost gaming performance and optimize system resources on Android devices — all systemlessly installed.</p>
 
 ## Quick Access
 
@@ -18,7 +18,7 @@ A lightweight Magisk/KernelSU module designed to boost gaming performance and op
 - Please do some research if you have any concerns about the features included in this module before flashing it!
 - **YOU** are choosing to make these modifications, and if you point the finger at me for messing up your device, **I will laugh at you.**
 
-## ✨ Features Overview (Systemless)
+## ✨ Features Overview
  - Smart game detection via logcat (Event-driven, with near-zero CPU usage: ~0.1%)
  - Auto-applies performance profile for games (CPU, GPU, I/O, and memory tweaks)
  - Dynamically switches to Vulkan Renderer for smoother gaming (restores to default when no game is running)
@@ -36,6 +36,6 @@ Learn how to exclude package names in `/sdcard/whitelist.prop`: [Whitelist Tutor
 
 ## 📝 IMPORTANT NOTE
 
-Please do not DM me for random issues. Use the Support Group so others can help and solutions stay public. If you DM me asking why your phone lags while running 200 apps at once — I will pretend I never saw it.
+<p align="center"> Please do not DM me for random issues. Use the Support Group so others can help and solutions stay public. If you DM me asking why your phone lags while running 200 apps at once — I will pretend I never saw it.</p>
 
 © 2025 AkasTKzume | Licensed under the [GNU General Public License v3.0 (GPLv3)](https://www.gnu.org/licenses/gpl-3.0.html)

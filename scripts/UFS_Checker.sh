@@ -11,7 +11,9 @@
 # Author: AkasTKzume
 # ==========================================================
 
-# --- Main Variables ---
+# ------------------------------
+# Main Variables
+# ------------------------------
 UFS_Base="/sys/devices/platform/soc/4804000.ufshc/health_descriptor"
 UFS_ID="UFS Health Checker"
 
@@ -122,3 +124,8 @@ $P_E
 Full bars = end-of-life."
 
 toast "$msg"
+
+# ------------------------------
+# Exit to prevent further execution
+# ------------------------------
+exit 0

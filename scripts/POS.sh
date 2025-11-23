@@ -84,7 +84,7 @@ kill_non_whitelisted_apps() {
 
 # ====================================
 # Logcat Method Game Detection
-# Event-Based 0.1-0.4% CPU Usage
+# Event-Based 0.1% CPU Usage
 # Extremely Do NOT Modify the logic
 # ====================================
 logcat -b events -v brief | grep --line-buffered "input_focus" | while read -r line; do

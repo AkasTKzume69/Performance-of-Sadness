@@ -1,6 +1,4 @@
-set_permissions() {
-  set_perm  $MODPATH/system/vendor/etc/msm_irqbalance.conf 0 0 0644
-  set_perm  $MODPATH/system/vendor/etc/powerhint.json 0 0 0644
+#set_permissions() {
 }
 
 SKIPUNZIP=1

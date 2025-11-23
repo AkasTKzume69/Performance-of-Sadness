@@ -6,7 +6,7 @@ A lightweight Magisk/KernelSU module designed to boost gaming performance and op
 
 ## Quick Access
 
-[![Officially Supported Games](https://img.shields.io/badge/Games-List-brightgreen)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/common/game-list.md)
+[![Officially Supported Games](https://img.shields.io/badge/Games-Support-brightgreen)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/common/game-list.md)
 [![Changelog](https://img.shields.io/badge/Changelog-Updates-blue)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/changelog.md)
 [![Installation Guide](https://img.shields.io/badge/Install-Guide-yellow)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/common/installation.md)
 [![Support Group](https://img.shields.io/badge/Support-Telegram-blueviolet)](https://t.me/AkasTKzumeOFFICIAL)

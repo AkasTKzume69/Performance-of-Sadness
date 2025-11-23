@@ -21,16 +21,19 @@ mkdir -p "$(dirname "$ALL_APPS")"
 # Delete existing ALL_APPS if present
 [ -f "$ALL_APPS" ] && rm -f "$ALL_APPS"
 
-# Step 1: List all user packages
+# List all user packages
 pm list packages -3 | sed 's/package://g' > "$TMP_FILE"
 
-# Step 2: Save to ALL_APPS safely
+# Save to ALL_APPS safely
 while read -r pkg; do
     echo "$pkg" >> "$ALL_APPS"
 done < "$TMP_FILE"
 
-# Step 3: Cleanup
+# Cleanup
 rm -f "$TMP_FILE"
 
 # Done
 wc -l "$ALL_APPS"
+
+# Exit to prevent further execution
+exit 0

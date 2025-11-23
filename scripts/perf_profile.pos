@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/system/bin/sh
 # ==========================================================
 # Performance of Sadness
 # Copyright (C) 2025  AkasTKzume
@@ -15,16 +15,12 @@
 # Author: AkasTKzume
 # ==========================================================
 
-# --- Set highest CPU clock speed ---
 # Notes:
-# Available 0-5 CPU Frequencies: 576000 691200 940800 1113600 1324800 1516800 1651200 1708800 1804800
-# Available 6-7 CPU Frequencies: 691200 940800 1228800 1401600 1516800 1651200 1804800 2054400 2208000
+# CPU Available 0-5 Frequencies: 576000 691200 940800 1113600 1324800 1516800 1651200 1708800 1804800
+# CPU Available 6-7 Frequencies: 691200 940800 1228800 1401600 1516800 1651200 1804800 2054400 2208000
 
-# --- GPU Tweaks ---
 # Notes:
 # GPU Available Frequencies= 840000000 770000000 650000000 490000000 390000000 266000000
-echo 266000000 > /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 2>/dev/null
-echo 840000000 > /sys/class/kgsl/kgsl-3d0/devfreq/max_freq 2>/dev/null
 echo 1 > /sys/class/kgsl/kgsl-3d0/force_clk_on 2>/dev/null
 echo 1 > /sys/class/kgsl/kgsl-3d0/force_rail_on 2>/dev/null
 echo 1 > /sys/class/kgsl/kgsl-3d0/force_bus_on 2>/dev/null

@@ -30,7 +30,7 @@
 
 ## Help & Resources
 
-Found a bug? Report it in our support group:  [Report Bug](https://t.me/AkasTKzumeOFFICIAL)
+Found a bug? Report it in our [Support Group](https://t.me/AkasTKzumeOFFICIAL)
 
 Learn how to exclude package names in `/sdcard/whitelist.prop`: [Whitelist Tutorial](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/whitelist.md)
 

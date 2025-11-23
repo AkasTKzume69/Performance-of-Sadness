@@ -26,7 +26,7 @@
  - Dynamically switches to Vulkan Renderer for smoother gaming (restores to default when no game is running)
  - When game is detected it automatically force-stops background user apps (excluding whitelisted apps on `/sdcard/whitelist.prop`) to free up system resources
  - Auto-creates a whitelist file on first boot (editable via `/sdcard/whitelist.prop`)
- - UFS Health Checker monitors storage wear (sends detailed toast notifications)
+ - UFS Health Checker monitors storage wear (sends detailed toast notifications every boot)
  - Systemless installation — no permanent changes to your device’s firmware; fully restores on module uninstall
  - Provides friendly toast notifications for all key actions
 

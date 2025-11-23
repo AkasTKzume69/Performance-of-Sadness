@@ -1,5 +1,5 @@
 <h1 align="center">Performance of Sadness</h1>
-  <img src="https://raw.githubusercontent.com/AkasTKzume69/Performance-of-Sadness/master/assert/banner.png" alt="Performance of Sadness Banner" width="100%">
+  <img src="https://raw.githubusercontent.com/AkasTKzume69/Performance-of-Sadness/master/common/banner.png" alt="Performance of Sadness Banner" width="100%">
 </p>
 
 A lightweight Magisk/KernelSU module designed to boost gaming performance and optimize system resources on Android devices — all **systemlessly** installed.

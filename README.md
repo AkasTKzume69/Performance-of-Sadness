@@ -1,4 +1,4 @@
-# 🎮 Performance of Sadness
+# Performance of Sadness
   <img src="https://raw.githubusercontent.com/AkasTKzume69/Performance-of-Sadness/master/assert/banner.png" alt="Performance of Sadness Banner" width="100%">
 </p>
 

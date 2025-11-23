@@ -124,9 +124,10 @@ logcat -b events -v brief | grep --line-buffered "input_focus" | while read -r l
             fi
 
             # Vulkan Renderer
-            if [ "$(getprop debug.hwui.renderer)" != "skiavk" ]; then
+            if [ -z "$(getprop debug.hwui.renderer)" ] || [ "$(getprop debug.hwui.renderer)" != "skiavk" ]; then
                 toast "Applying Vulkan Renderer..."
                 setprop debug.hwui.renderer skiavk
+                
             fi
 
             sleep 1
@@ -154,7 +155,7 @@ logcat -b events -v brief | grep --line-buffered "input_focus" | while read -r l
                 sleep 20
 
                 # Restore OpenGL only if needed (Improvement #1)
-                if [ "$(getprop debug.hwui.renderer)" != "opengl" ]; then
+                if [ -z "$(getprop debug.hwui.renderer)" ] || [ "$(getprop debug.hwui.renderer)" != "opengl" ]; then
                     toast "Restoring OpenGL Renderer..."
                     setprop debug.hwui.renderer opengl
                 fi

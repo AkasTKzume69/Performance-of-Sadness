@@ -19,12 +19,9 @@ You can also use a PC by connecting your device via USB and enabling file transf
 ### Step 3: Add Package Names to the Whitelist
 
 Each line in the `whitelist.prop` file should contain a single package name that you want to exclude. Add package names you want to whitelist, one per line. For example:
-
+>`com.facebook.katana`
 `com.facebook.orca`
-`com.android.launcher3`
 `com.instagram.android`
-`com.discord`
-`com.whatsapp`
 `org.telegram.messenger`
 
 

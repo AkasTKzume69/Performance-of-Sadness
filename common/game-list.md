@@ -1,4 +1,4 @@
-<h3>✔️ Officially Supported</h3>
+<h3>Officially Supported</h3>
 <ul>
   <li>Mobile Legends: Bang Bang – <code>com.mobile.legends</code></li>
 
@@ -91,6 +91,10 @@
 
   <li>Whiteout Survival – <br>
     <code>com.gof.global</code><br>
+  </li>
+  
+  <li>CarX Street – <br>
+    <code>com.carxtech.sr</code><br>
   </li>
   </ul>
 

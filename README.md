@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/AkasTKzume69/Performance-of-Sadness/master/common/banner.png" alt="Performance of Sadness Banner" width="100%">
 </p>
 
-<p align="center">A lightweight Magisk/KernelSU module designed to boost gaming performance and optimize system resources on Android devices — all systemlessly installed.</p>
+<p align="center">A extremely lightweight Magisk/KernelSU module designed to boost gaming performance and optimize system resources on Android devices — all systemlessly installed.</p>
 
 ## Quick Access
 

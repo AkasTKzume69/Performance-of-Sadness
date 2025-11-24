@@ -1,3 +1,5 @@
+### Upcoming Update ###
+* Added CarX Street game support
 ### V12-20251124 ###
 * Added force stop user apps when game detected
 * Added whitelist.prop on /sdcard/whitelist.prop to exclude packages on force stop user apps

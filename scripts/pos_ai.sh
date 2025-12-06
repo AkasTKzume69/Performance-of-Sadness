@@ -17,6 +17,7 @@ POS_ID_AI="Performance of Sadness AI"
 GAME_LIST="/data/adb/modules/pos/scripts/pos-games.zip"
 WHITE_LIST="/sdcard/whitelist.prop"
 POS_PROP="/sdcard/pos.prop"
+POS_PROP_FILE="/data/adb/modules/pos/scripts/pos_prop.sh"
 USER_APPS="/data/adb/modules/pos/scripts/user-apps.pos"
 
 # Performance Variables
@@ -74,53 +75,9 @@ create_whitelist() {
 create_whitelist
 
 # Create pos.prop if not exists
-create_pos_prop() {
-    if [ ! -f "$POS_PROP" ]; then
-        echo "# ==========================================" > "$POS_PROP"
-        echo "# Performance of Sadness Configuration File" >> "$POS_PROP"
-        echo "# Auto-generated default configuration" >> "$POS_PROP"
-        echo "# Reboot required to apply changes" >> "$POS_PROP"
-        echo "# No extra space, extra symbols, and no capitalization" >> "$POS_PROP"
-        echo "# ==========================================" >> "$POS_PROP"
-        echo "### Check UFS Lifespan every boot" >> "$POS_PROP"
-        echo "pos_ufs_health_show=true" >> "$POS_PROP"
-        echo "" >> "$POS_PROP"
-        echo "### CPU, GPU, IO toggles that applied when game detected" >> "$POS_PROP"
-        echo "pos_cpu_tweak=true" >> "$POS_PROP"
-        echo "pos_gpu_tweak=true" >> "$POS_PROP"
-        echo "pos_io_tweak=true" >> "$POS_PROP"
-        echo "" >> "$POS_PROP"
-        echo "### Thermal tweaks that applied when game detected" >> "$POS_PROP"
-        echo "pos_thermal_tweak=false" >> "$POS_PROP"
-        echo "pos_force_thermal_disable=false" >> "$POS_PROP"
-        echo "# Adjust the temperature to throttle down" >> "$POS_PROP"
-        echo "# Only works if pos_thermal_tweak=true" >> "$POS_PROP"
-        echo "pos_thermal_tweak_temp=55°C" >> "$POS_PROP"       
-# Only works if pos_thermal_tweak=true
-        echo "" >> "$POS_PROP"
-        echo "### Force-stop user apps when game detected except on whitelist" >> "$POS_PROP"
-        echo "pos_force_stop_user_apps=true" >> "$POS_PROP"
-        echo "" >> "$POS_PROP"
-        echo "### Whitelist behavior" >> "$POS_PROP"
-        echo "pos_whitelist_prop=true" >> "$POS_PROP"
-        echo "pos_whitelist_prop_location=/sdcard" >> "$POS_PROP"
-        echo "" >> "$POS_PROP"
-        echo "### Renderer switching when game detected" >> "$POS_PROP"
-        echo "pos_renderer_switch=true" >> "$POS_PROP"
-        echo "pos_renderer_switch_individual=false" >> "$POS_PROP"
-        echo "" >> "$POS_PROP"
-        echo "# Renderer switch auto relaunch to apply renderer properly" >> "$POS_PROP"
-        echo "# Only works if pos_renderer_switch=true" >> "$POS_PROP"
-        echo "pos_renderer_switch_relaunch=true" >> "$POS_PROP"
-        echo "" >> "$POS_PROP"
-        echo "### List of games that should use Vulkan" >> "$POS_PROP"
-        echo "# Only works if pos_renderer_switch_individual=true" >> "$POS_PROP"
-        echo "# Example:" >> "$POS_PROP"
-        echo "# pos_renderer_games=com.mobile.legends com.garena.game.codm com.roblox.client" >> "$POS_PROP"
-        echo "pos_renderer_games=" >> "$POS_PROP"
-    fi
-}
-create_pos_prop
+if [ ! -f "$POS_PROP" ]; then
+    sh "$POS_PROP_FILE"
+fi
 
 _trim() {
     local var="$1"
@@ -172,6 +129,7 @@ if [ -f "$POS_PROP" ]; then
             pos_whitelist_prop) pos_whitelist_prop="$value" ;;
             pos_whitelist_prop_location) pos_whitelist_prop_location="$value" ;;
             pos_renderer_switch) pos_renderer_switch="$value" ;;
+            pos_renderer_switch_pipeline) pos_renderer_switch_pipeline="$value" ;;
             pos_renderer_switch_individual) pos_renderer_switch_individual="$value" ;;
             pos_renderer_switch_relaunch) pos_renderer_switch_relaunch="$value" ;;
             pos_renderer_games) pos_renderer_games="$value" ;;
@@ -211,7 +169,7 @@ fi
 [ ! -f "$CPU_Restore" ] && toast "[File] CPU Restore missing!" && exit 1
 [ ! -f "$GPU_Restore" ] && toast "[File] GPU Restore missing!" && exit 1
 [ ! -f "$IO_Restore" ] && toast "[File] IO Restore missing!" && exit 1
-#[ ! -f "$Thermal_Restore" ] && toast "[File] Thermal Restore missing!" && exit 1
+[ ! -f "$Thermal_Restore" ] && toast "[File] Thermal Restore missing!" && exit 1
 [ ! -f "$Thermal_Disable_Restore" ] && toast "[File] Thermal Disable Restore missing!" && exit 1
 
 # ====================================
@@ -281,59 +239,55 @@ logcat -b events -v brief | grep --line-buffered "input_focus" | while read -r l
 
         if [ "$PREV_IS_GAME" -eq 0 ] && [ "$RETURNED" -eq 0 ]; then
 
-            # --------------------------------------
-                # CPU Performance
-                # --------------------------------------
+                # --- CPU Performance ---
                 if [ "$pos_cpu_tweak" = "true" ]; then
-                    script_ok "$CPU" && sh "$CPU" >/dev/null 2>&1 &
+                    script_ok "$CPU" && sh "$CPU" >/dev/null 2>&1
                 fi
 
-                # --------------------------------------
-                # GPU Performance
-                # --------------------------------------
+                # --- GPU Performance ---
                 if [ "$pos_gpu_tweak" = "true" ]; then
-                    script_ok "$GPU" && sh "$GPU" >/dev/null 2>&1 &
+                    script_ok "$GPU" && sh "$GPU" >/dev/null 2>&1
                 fi
 
-                # --------------------------------------
-                # I/O Performance
-                # --------------------------------------
+                # --- I/O Performance ---
                 if [ "$pos_io_tweak" = "true" ]; then
-                    script_ok "$IO" && sh "$IO" >/dev/null 2>&1 &
+                    script_ok "$IO" && sh "$IO" >/dev/null 2>&1
                 fi
 
-                # --------------------------------------
-                # Thermal Performance
-                # --------------------------------------
+                # --- Thermal Performance ---
                 if [ "$pos_thermal_tweak" = "true" ]; then
-                    script_ok "$Thermal" && sh "$Thermal" >/dev/null 2>&1 &
+                    script_ok "$Thermal" && sh "$Thermal" >/dev/null 2>&1
                 fi
 
-                # --------------------------------------
-                # Thermal Disable
-                # --------------------------------------
+                # --- Thermal Disable ---
                 if [ "$pos_force_thermal_disable" = "true" ]; then
-                    script_ok "$Thermal_Disable" && sh "$Thermal_Disable" >/dev/null 2>&1 &
+                    script_ok "$Thermal_Disable" && sh "$Thermal_Disable" >/dev/null 2>&1
                 fi
 
             sleep 1
-
+            
             # -------------------------
             # Vulkan / Renderer switching
             # -------------------------
             if [ "$pos_renderer_switch" = "true" ]; then
+            
+             # Determine pipeline from pos.prop
+            RENDER_PIPELINE="$pos_renderer_switch_pipeline"
+            
+            # Default if empty
+            [ -z "$RENDER_PIPELINE" ] && RENDER_PIPELINE="skiavk"
 
                 if [ "$pos_renderer_switch_individual" = "true" ]; then
                     # pos_renderer_games must be space-separated list of package names
                     echo "$pos_renderer_games" | tr ' ' '\n' | grep -qxF "$CURRENT_PKG"
                     if [ $? -eq 0 ]; then
-                        setprop debug.hwui.renderer skiavk
+                        setprop debug.hwui.renderer "$RENDER_PIPE"
                     else
                         setprop debug.hwui.renderer opengl
                     fi
                 else
-                    # always use Vulkan when gaming
-                    setprop debug.hwui.renderer skiavk
+                    # Global renderer switching
+                    setprop debug.hwui.renderer "$RENDER_PIPE"
                     cmd graphics reset 2>/dev/null
                     
                     # Restart game to apply changes
@@ -362,45 +316,36 @@ logcat -b events -v brief | grep --line-buffered "input_focus" | while read -r l
             toast "No game detected — Restoring in 20 seconds..."
             (
                 sleep 20
+                
                 # Restore renderer only if switching was enabled
-                if [ "$pos_renderer_switch" = "true" ] || [ "$pos_renderer_switch" = "True" ]; then
+                if [ "$pos_renderer_switch" = "true" ]; then
                 setprop debug.hwui.renderer opengl
                 cmd graphics reset 2>/dev/null
                 fi
                 
-                # --------------------------------------
-                # CPU Restore
-                # --------------------------------------
+                # --- CPU Restore ---
                 if [ "$pos_cpu_tweak" = "true" ]; then
-                script_ok "$CPU_Restore" && sh "$CPU_Restore" >/dev/null 2>&1 &
+                script_ok "$CPU_Restore" && sh "$CPU_Restore" >/dev/null 2>&1
                 fi
                 
-                # --------------------------------------
-                # GPU Restore
-                # --------------------------------------
+                # --- GPU Restore ---
                 if [ "$pos_gpu_tweak" = "true" ]; then
-                script_ok "$GPU_Restore" && sh "$GPU_Restore" >/dev/null 2>&1 &
+                script_ok "$GPU_Restore" && sh "$GPU_Restore" >/dev/null 2>&1
                 fi
                 
-                # --------------------------------------
-                # IO Restore
-                # --------------------------------------
+                # --- IO Restore ---
                 if [ "$pos_io_tweak" = "true" ]; then
-                script_ok "$IO_Restore" && sh "$IO_Restore" >/dev/null 2>&1 &
+                script_ok "$IO_Restore" && sh "$IO_Restore" >/dev/null 2>&1
                 fi
                 
-                # --------------------------------------
-                # Thermal Restore
-                # --------------------------------------
+                # --- Thermal Restore ---
                 if [ "$pos_thermal_tweak" = "true" ]; then
-                script_ok "$Thermal_Restore" && sh "$Thermal_Restore" >/dev/null 2>&1 &
+                script_ok "$Thermal_Restore" && sh "$Thermal_Restore" >/dev/null 2>&1
                 fi
                 
-                # --------------------------------------
-                # Thermal Disable Restore
-                # --------------------------------------
+                # --- Thermal Disable Restore ---
                 if [ "$pos_force_thermal_disable" = "true" ]; then
-                script_ok "$Thermal_Disable_Restore" && sh "$Thermal_Disable_Restore" >/dev/null 2>&1 &
+                script_ok "$Thermal_Disable_Restore" && sh "$Thermal_Disable_Restore" >/dev/null 2>&1
                 fi
                 toast "Default Profile Restored"
             ) &

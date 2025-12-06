@@ -20,103 +20,103 @@ POL6="$CPUP/policy6"
 # ====================================
 # Policy 0  (Little Cluster)
 # ====================================
+
 # --- Governor ---
 if [ -f "$POL0/scaling_governor" ]; then
-    echo performance > $POL0/scaling_governor
+    echo performance > "$POL0/scaling_governor"
 fi
 
 # --- Frequencies ---
 if [ -f "$POL0/scaling_min_freq" ]; then
-    echo 1804800 > $POL0/scaling_min_freq
+    echo 1804800 > "$POL0/scaling_min_freq"
 fi
 
 if [ -f "$POL0/scaling_max_freq" ]; then
-    echo 1804800 > $POL0/scaling_max_freq
+    echo 1804800 > "$POL0/scaling_max_freq"
 fi
 
 # --- Hispeed ---
 if [ -f "$POL0/hispeed_freq" ]; then
-    echo 1804800 > $POL0/hispeed_freq
+    echo 1804800 > "$POL0/hispeed_freq"
 fi
 
 if [ -f "$POL0/hispeed_load" ]; then
-    echo 0 > $POL0/hispeed_load
+    echo 0 > "$POL0/hispeed_load"
 fi
 
 # --- Boost ---
 if [ -f "$POL0/boost" ]; then
-    echo 0 > $POL0/boost
+    echo 0 > "$POL0/boost"
 fi
 
 if [ -f "$POL0/boostpulse" ]; then
-    echo 0 > $POL0/boostpulse
+    echo 0 > "$POL0/boostpulse"
 fi
 
 # --- Idle States ---
 if [ -f "$POL0/cpu0/cpuidle/state0/disable" ]; then
-    echo 1 > $POL0/cpu0/cpuidle/state0/disable
+    echo 1 > "$POL0/cpu0/cpuidle/state0/disable"
 fi
 
 if [ -f "$POL0/cpu0/cpuidle/state1/disable" ]; then
-    echo 1 > $POL0/cpu0/cpuidle/state1/disable
+    echo 1 > "$POL0/cpu0/cpuidle/state1/disable"
 fi
 
 # ====================================
 # Policy 6  (Big Cluster)
 # ====================================
+
 # --- Governor ---
 if [ -f "$POL6/scaling_governor" ]; then
-    echo performance > $POL6/scaling_governor
+    echo performance > "$POL6/scaling_governor"
 fi
 
 # --- Frequencies ---
 if [ -f "$POL6/scaling_min_freq" ]; then
-    echo 2208000 > $POL6/scaling_min_freq
+    echo 2208000 > "$POL6/scaling_min_freq"
 fi
 
 if [ -f "$POL6/scaling_max_freq" ]; then
-    echo 2208000 > $POL6/scaling_max_freq
+    echo 2208000 > "$POL6/scaling_max_freq"
 fi
 
 # --- Hispeed ---
 if [ -f "$POL6/hispeed_freq" ]; then
-    echo 2208000 > $POL6/hispeed_freq
+    echo 2208000 > "$POL6/hispeed_freq"
 fi
 
 if [ -f "$POL6/hispeed_load" ]; then
-    echo 0 > $POL6/hispeed_load
+    echo 0 > "$POL6/hispeed_load"
 fi
 
 # --- Boost ---
 if [ -f "$POL6/boost" ]; then
-    echo 0 > $POL6/boost
+    echo 0 > "$POL6/boost"
 fi
 
 if [ -f "$POL6/boostpulse" ]; then
-    echo 0 > $POL6/boostpulse
+    echo 0 > "$POL6/boostpulse"
 fi
 
 # --- Idle States ---
 if [ -f "$POL6/cpu6/cpuidle/state0/disable" ]; then
-    echo 1 > $POL6/cpu6/cpuidle/state0/disable
+    echo 1 > "$POL6/cpu6/cpuidle/state0/disable"
 fi
 
 if [ -f "$POL6/cpu6/cpuidle/state1/disable" ]; then
-    echo 1 > $POL6/cpu6/cpuidle/state1/disable
+    echo 1 > "$POL6/cpu6/cpuidle/state1/disable"
 fi
 
 # ====================================
 # Global CPU Settings
 # ====================================
+
 # --- Bring all cores online ---
-if [ -f "$CPU/cpu0/online" ]; then echo 1 > $CPU/cpu0/online; fi
-if [ -f "$CPU/cpu1/online" ]; then echo 1 > $CPU/cpu1/online; fi
-if [ -f "$CPU/cpu2/online" ]; then echo 1 > $CPU/cpu2/online; fi
-if [ -f "$CPU/cpu3/online" ]; then echo 1 > $CPU/cpu3/online; fi
-if [ -f "$CPU/cpu4/online" ]; then echo 1 > $CPU/cpu4/online; fi
-if [ -f "$CPU/cpu5/online" ]; then echo 1 > $CPU/cpu5/online; fi
-if [ -f "$CPU/cpu6/online" ]; then echo 1 > $CPU/cpu6/online; fi
-if [ -f "$CPU/cpu7/online" ]; then echo 1 > $CPU/cpu7/online; fi
+for CORE in 0 1 2 3 4 5 6 7; do
+    if [ -f "$CPU/cpu$CORE/online" ]; then
+        echo 1 > "$CPU/cpu$CORE/online"
+    fi
+done
 
 # --- Scheduler Tweaks ---
 if [ -f "/proc/sys/kernel/sched_rt_runtime_us" ]; then
@@ -137,76 +137,6 @@ if [ -f "/sys/power/autosleep" ]; then
 fi
 
 # ====================================
-# Thermal Controllers
+# Exit to prevent further execution
 # ====================================
-# --- CPU USR zones ---
-if [ -f "/sys/class/thermal/thermal_zone16/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone16/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone17/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone17/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone18/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone18/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone19/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone19/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone20/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone20/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone21/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone21/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone22/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone22/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone23/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone23/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone24/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone24/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone25/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone25/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone26/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone26/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone27/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone27/mode
-fi
-
-# --- CPU STEP zones ---
-if [ -f "/sys/class/thermal/thermal_zone41/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone41/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone42/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone42/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone43/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone43/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone44/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone44/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone45/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone45/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone46/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone46/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone47/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone47/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone48/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone48/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone49/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone49/mode
-fi
-if [ -f "/sys/class/thermal/thermal_zone50/mode" ]; then
-    echo disabled > /sys/class/thermal/thermal_zone50/mode
-fi
-
 exit 0

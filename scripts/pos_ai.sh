@@ -92,7 +92,11 @@ create_pos_prop() {
         echo "" >> "$POS_PROP"
         echo "### Thermal tweaks that applied when game detected" >> "$POS_PROP"
         echo "pos_thermal_tweak=false" >> "$POS_PROP"
-        echo "pos_thermal_disable=false" >> "$POS_PROP"
+        echo "pos_force_thermal_disable=false" >> "$POS_PROP"
+        echo "# Adjust the temperature to throttle down" >> "$POS_PROP"
+        echo "# Only works if pos_thermal_tweak=true" >> "$POS_PROP"
+        echo "pos_thermal_tweak_temp=55°C" >> "$POS_PROP"       
+# Only works if pos_thermal_tweak=true
         echo "" >> "$POS_PROP"
         echo "### Force-stop user apps when game detected except on whitelist" >> "$POS_PROP"
         echo "pos_force_stop_user_apps=true" >> "$POS_PROP"
@@ -163,7 +167,7 @@ if [ -f "$POS_PROP" ]; then
             pos_gpu_tweak) pos_gpu_tweak="$value" ;;
             pos_io_tweak) pos_io_tweak="$value" ;;
             pos_thermal_tweak) pos_thermal_tweak="$value" ;;
-            pos_thermal_disable) pos_thermal_disable="$value" ;;
+            pos_force_thermal_disable) pos_force_thermal_disable="$value" ;;
             pos_force_stop_user_apps) pos_force_stop_user_apps="$value" ;;
             pos_whitelist_prop) pos_whitelist_prop="$value" ;;
             pos_whitelist_prop_location) pos_whitelist_prop_location="$value" ;;
@@ -178,19 +182,19 @@ if [ -f "$POS_PROP" ]; then
     done < "$POS_PROP"
 fi
 
+# ====================================
+# Thermal Logic Prop — Prevent Conflict
+# ====================================
+# Priority: Thermal Disable overrides Thermal Tweak
+if [ "$pos_force_thermal_disable" = "true" ]; then
+    pos_thermal_tweak="false"
+fi
+
 # If whitelist from prop is enabled, point WHITE_LIST to the configured location
 if [ "$pos_whitelist_prop" = "true" ] || [ "$pos_whitelist_prop" = "True" ]; then
     WLLOC="$pos_whitelist_prop_location"
     [ -z "$WLLOC" ] && WLLOC="/sdcard"
     WHITE_LIST="${WLLOC%/}/whitelist.prop"
-fi
-
-# ====================================
-# Thermal Logic Prop — Prevent Conflict
-# ====================================
-# Priority: Thermal Disable overrides Thermal Tweak
-if [ "$pos_thermal_disable" = "true" ] || [ "$pos_thermal_disable" = "True" ]; then
-    pos_thermal_tweak="false"
 fi
 
 # ====================================
@@ -208,12 +212,7 @@ fi
 [ ! -f "$GPU_Restore" ] && toast "[File] GPU Restore missing!" && exit 1
 [ ! -f "$IO_Restore" ] && toast "[File] IO Restore missing!" && exit 1
 #[ ! -f "$Thermal_Restore" ] && toast "[File] Thermal Restore missing!" && exit 1
-#[ ! -f "$Thermal_Disable_Restore" ] && toast "[File] Thermal Disable Restore missing!" && exit 1
-
-# ====================================
-# Welcome Note
-# ====================================
-toast "Hello! I'm $POS_ID_AI☺️ your game assistant!"
+[ ! -f "$Thermal_Disable_Restore" ] && toast "[File] Thermal Disable Restore missing!" && exit 1
 
 # ====================================
 # Show UFS Health if enabled
@@ -221,6 +220,12 @@ toast "Hello! I'm $POS_ID_AI☺️ your game assistant!"
 if [ "$pos_ufs_health_show" = "true" ]; then
 script_ok "$UFS_Health" && sh "$UFS_Health" >/dev/null 2>&1 &
 fi
+
+# ====================================
+# Welcome Note
+# ====================================
+toast "Hello! I'm $POS_ID_AI☺️ your game assistant!"
+
 # ====================================
 # Kill All Non-Whitelisted Apps
 # ====================================
@@ -306,7 +311,7 @@ logcat -b events -v brief | grep --line-buffered "input_focus" | while read -r l
                 # --------------------------------------
                 # Thermal Disable
                 # --------------------------------------
-                if [ "$pos_thermal_disable" = "true" ]; then
+                if [ "$pos_force_thermal_disable" = "true" ]; then
                     script_ok "$Thermal_Disable" && sh "$Thermal_Disable" >/dev/null 2>&1 &
                 fi
 
@@ -393,7 +398,7 @@ logcat -b events -v brief | grep --line-buffered "input_focus" | while read -r l
                 # --------------------------------------
                 # Thermal Disable Restore
                 # --------------------------------------
-                if [ "$pos_thermal_disable" = "true" ]; then
+                if [ "$pos_force_thermal_disable" = "true" ]; then
                 script_ok "$Thermal_Disable_Restore" && sh "$Thermal_Disable_Restore" >/dev/null 2>&1 &
                 fi
                 toast "Default Profile Restored"

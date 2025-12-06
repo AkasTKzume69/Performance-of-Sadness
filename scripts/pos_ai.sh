@@ -264,25 +264,18 @@ logcat -b events -v brief | grep --line-buffered "input_focus" | while read -r l
     # GAME DETECTED
     # ================================
     if [ "$IS_GAME" -eq 1 ]; then
-        # Validate restore PID first
-        if [ -n "$RESTORE_PID" ] && ! kill -0 "$RESTORE_PID" 2>/dev/null; then
-        unset RESTORE_PID
-        fi        
         RETURNED=0
-                
-        # If restore process exists AND is alive
-        if [ -n "$RESTORE_PID" ] && kill -0 "$RESTORE_PID" 2>/dev/null; then
-        kill "$RESTORE_PID" 2>/dev/null
-        unset RESTORE_PID
-        RETURNED=1
-        toast "Game Detected — $CURRENT_PKG"
-        fi
-        
-        # MAIN GAME LOGIC
-        if [ "$PREV_IS_GAME" -eq 0 ] && [ "$RETURNED" -eq 0 ]; then
-        toast "Game Detected — $CURRENT_PKG"
 
-                # --------------------------------------
+        if [ -n "$RESTORE_PID" ] && kill -0 "$RESTORE_PID" 2>/dev/null; then
+            kill "$RESTORE_PID" 2>/dev/null
+            unset RESTORE_PID
+            RETURNED=1
+            toast "Game Detected — $CURRENT_PKG"
+        fi
+
+        if [ "$PREV_IS_GAME" -eq 0 ] && [ "$RETURNED" -eq 0 ]; then
+
+            # --------------------------------------
                 # CPU Performance
                 # --------------------------------------
                 if [ "$pos_cpu_tweak" = "true" ]; then
@@ -316,7 +309,8 @@ logcat -b events -v brief | grep --line-buffered "input_focus" | while read -r l
                 if [ "$pos_thermal_disable" = "true" ]; then
                     script_ok "$Thermal_Disable" && sh "$Thermal_Disable" >/dev/null 2>&1 &
                 fi
-            fi
+
+            sleep 1
 
             # -------------------------
             # Vulkan / Renderer switching
@@ -334,26 +328,28 @@ logcat -b events -v brief | grep --line-buffered "input_focus" | while read -r l
                 else
                     # always use Vulkan when gaming
                     setprop debug.hwui.renderer skiavk
-                    fi
                     cmd graphics reset 2>/dev/null
-                    fi
                     
                     # Restart game to apply changes
                     if [ "$pos_renderer_switch" = "true" ] && [ "$pos_renderer_switch_relaunch" = "true" ]; then
-                    am force-stop "$CURRENT_PKG"
-                    sleep 1
-                    monkey -p "$CURRENT_PKG" -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1
+                      am force-stop "$CURRENT_PKG"
+                      sleep 1
+                      monkey -p "$CURRENT_PKG" -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1
                     fi
                     sleep 1
-            
-            # Force stop non whitelisted apps (if enabled)
-            if [ "$pos_force_stop_user_apps" = "true" ] || [ "$pos_force_stop_user_apps" = "True" ]; then
-                kill_non_whitelisted_apps "$CURRENT_PKG"
+                    
+                    # Force stop non whitelisted apps (if enabled)
+                    if [ "$pos_force_stop_user_apps" = "true" ]; then
+                      kill_non_whitelisted_apps "$CURRENT_PKG"
+                    fi
+                fi
             fi
-PREV_IS_GAME=1
+        fi
 
+        PREV_IS_GAME=1
+            
     # ================================
-    # NON-GAME — RESTORE AFTER 20s
+    # Non-Game — Restore after 20s
     # ================================
     else
         if [ "$PREV_IS_GAME" -eq 1 ]; then

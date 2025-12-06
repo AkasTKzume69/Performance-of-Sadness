@@ -57,7 +57,7 @@ script_ok() {
 }
 
 # Wait user to unlock the device (Android 16 Storage Restrictions)
-sleep 1
+sleep 10
 
 # Create whitelist if not exists
 create_whitelist() {
@@ -205,8 +205,8 @@ fi
 [ ! -f "$CPU" ] && toast "[Script]CPU Tweak missing!" && exit 1
 [ ! -f "$GPU" ] && toast "[Script]GPU Tweak missing!" && exit 1
 [ ! -f "$IO" ] && toast "[Script]IO Tweak missing!" && exit 1
-#[ ! -f "$Thermal" ] && toast "[Script]Thermal Tweak missing!" && exit 1
-#[ ! -f "$Thermal_Disable" ] && toast "[Script]Thermal Disable missing!" && exit 1
+[ ! -f "$Thermal" ] && toast "[Script]Thermal Tweak missing!" && exit 1
+[ ! -f "$Thermal_Disable" ] && toast "[Script]Thermal Disable missing!" && exit 1
 
 [ ! -f "$CPU_Restore" ] && toast "[File] CPU Restore missing!" && exit 1
 [ ! -f "$GPU_Restore" ] && toast "[File] GPU Restore missing!" && exit 1
@@ -269,6 +269,7 @@ logcat -b events -v brief | grep --line-buffered "input_focus" | while read -r l
     # GAME DETECTED
     # ================================
     if [ "$IS_GAME" -eq 1 ]; then
+        toast "Game Detected — $CURRENT_PKG"
         RETURNED=0
 
         if [ -n "$RESTORE_PID" ] && kill -0 "$RESTORE_PID" 2>/dev/null; then

@@ -1,17 +1,17 @@
 <h2 align="center">Performance of Sadness</h2>
-  <img src="https://raw.githubusercontent.com/AkasTKzume69/Performance-of-Sadness/master/banner.png" alt="Performance of Sadness Banner" width="100%">
+  <img src="https://raw.githubusercontent.com/AkasTKzume69/Performance-of-Sadness/main/banner.png" alt="Performance of Sadness Banner" width="100%">
 </p>
 
 <p align="center">The world’s lightest hard-coded game performance engine. Performance of Sadness AI is an extremely lightweight, event-driven game-assistant engine designed to boost performance when game is detected — and restore system defaults once gaming ends. — all systemlessly installed.</p>
 
 ## Quick Access
 
-[![Officially Supported Games](https://img.shields.io/badge/Games-Support-brightgreen)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/common/game-list.md)
-[![Changelog](https://img.shields.io/badge/Changelog-Updates-blue)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/changelog.md)
-[![Installation Guide](https://img.shields.io/badge/Install-Guide-yellow)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/common/installation.md)
-[![Whitelist Tutorial](https://img.shields.io/badge/Whitelist-Tutorial-orange)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/common/whitelist.md)
+[![Officially Supported Games](https://img.shields.io/badge/Games-Support-brightgreen)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/main/common/game-list.md)
+[![Changelog](https://img.shields.io/badge/Changelog-Updates-blue)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/main/changelog.md)
+[![Installation Guide](https://img.shields.io/badge/Install-Guide-yellow)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/main/common/installation.md)
+[![Whitelist Tutorial](https://img.shields.io/badge/Whitelist-Tutorial-orange)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/main/common/whitelist.md)
 [![Support Group](https://img.shields.io/badge/Support-Group-blueviolet)](https://t.me/AkasTKzumeOFFICIAL)
-[![Prop Tutorial](https://img.shields.io/badge/Prop-Tutorial-green)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/common/pos_prop.md)
+[![Prop Tutorial](https://img.shields.io/badge/Prop-Tutorial-green)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/main/common/pos_prop.md)
 
 ## ⚠️ WARNING
 
@@ -34,9 +34,9 @@
 
 Found a bug? Report it in our [Support Group](https://t.me/AkasTKzumeOFFICIAL)
 
-Learn how to exclude package names in `/sdcard/whitelist.prop`: [Whitelist Tutorial](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/common/whitelist.md)
+Learn how to exclude package names in `/sdcard/whitelist.prop`: [Whitelist Tutorial](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/main/common/whitelist.md)
 
-Learn how to modify Performance of Sadness behavior in `/sdcard/pos.prop`: [POS Prop Tutorial](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/master/common/pos_prop.md)
+Learn how to modify Performance of Sadness behavior in `/sdcard/pos.prop`: [POS Prop Tutorial](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/main/common/pos_prop.md)
 
 ## 📝 IMPORTANT NOTE
 

@@ -29,6 +29,7 @@
  - Auto-generates safe restore scripts to avoid incorrect system restore values
  - Auto-creates an editable whitelist file at first boot (/sdcard/whitelist.prop)
  - Includes a UFS Health Monitor, sending detailed toast notifications
+ - Fully based on Device Firmware
  - And many more☺️
 
 ## Help & Resources

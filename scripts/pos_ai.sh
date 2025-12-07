@@ -57,8 +57,30 @@ script_ok() {
     [ -f "$1" ]
 }
 
-# Wait user to unlock the device (Android 16 Storage Restrictions)
-sleep 10
+# ====================================
+# Wait Until User Unlocks Screen
+# ====================================
+is_locked() {
+    local ks
+    ks=$(dumpsys activity | grep -E "isKeyguardShowing|mKeyguardShowing" | head -n 2)
+    echo "$ks" | grep -q "=true"
+}
+toast "🔓 Device locked! Please unlock your device to load the scripts!"
+
+# --- Main Loop ---
+last_state="unknown"
+while true; do
+    if is_locked; then
+        if [ "$last_state" != "locked" ]; then
+            last_state="locked"
+        fi
+    else
+        if [ "$last_state" != "unlocked" ]; then
+            last_state="unlocked"
+        fi
+        break   # User unlocked → exit wait-loop
+    fi
+done
 
 # Create whitelist if not exists
 create_whitelist() {
@@ -120,6 +142,7 @@ if [ -f "$POS_PROP" ]; then
         # Assign to recognized variables only (avoid eval)
         case "$key" in
             pos_ufs_health_show) pos_ufs_health_show="$value" ;;
+            pos_ai_restore_timeout) pos_ai_restore_timeout="$value" ;;
             pos_cpu_tweak) pos_cpu_tweak="$value" ;;
             pos_gpu_tweak) pos_gpu_tweak="$value" ;;
             pos_io_tweak) pos_io_tweak="$value" ;;
@@ -202,7 +225,109 @@ kill_non_whitelisted_apps() {
         done < "$USER_APPS"
     fi
 }
+Performance() {
+                # --- CPU Performance ---
+                if [ "$pos_cpu_tweak" = "true" ]; then
+                    script_ok "$CPU" && sh "$CPU" >/dev/null 2>&1 &
+                fi
 
+                # --- GPU Performance ---
+                if [ "$pos_gpu_tweak" = "true" ]; then
+                    script_ok "$GPU" && sh "$GPU" >/dev/null 2>&1 &
+                fi
+
+                # --- I/O Performance ---
+                if [ "$pos_io_tweak" = "true" ]; then
+                    script_ok "$IO" && sh "$IO" >/dev/null 2>&1 &
+                fi
+
+                # --- Thermal Performance ---
+                if [ "$pos_thermal_tweak" = "true" ]; then
+                    script_ok "$Thermal" && sh "$Thermal" >/dev/null 2>&1 &
+                fi
+
+                # --- Thermal Disable ---
+                if [ "$pos_force_thermal_disable" = "true" ]; then
+                    script_ok "$Thermal_Disable" && sh "$Thermal_Disable" >/dev/null 2>&1 &
+                fi
+}
+
+Renderer() {
+            # -------------------------
+            # Vulkan / Renderer switching
+            # -------------------------
+            if [ "$pos_renderer_switch" = "true" ]; then
+            
+             # Determine pipeline from pos.prop
+            RENDER_PIPELINE="$pos_renderer_switch_pipeline"
+            
+            # Default if empty
+            [ -z "$RENDER_PIPELINE" ] && RENDER_PIPELINE="skiavk"
+
+                if [ "$pos_renderer_switch_individual" = "true" ]; then
+                    # pos_renderer_games must be space-separated list of package names
+                    echo "$pos_renderer_games" | tr ' ' '\n' | grep -qxF "$CURRENT_PKG"
+                    if [ $? -eq 0 ]; then
+                        setprop debug.hwui.renderer "$RENDER_PIPELINE"
+                    else
+                        setprop debug.hwui.renderer opengl
+                    fi
+                else
+                    # Global renderer switching
+                    setprop debug.hwui.renderer "$RENDER_PIPELINE"
+                    cmd graphics reset 2>/dev/null
+                    
+                    # Restart game to apply changes
+                    if [ "$pos_renderer_switch" = "true" ] && [ "$pos_renderer_switch_relaunch" = "true" ]; then
+                      am force-stop "$CURRENT_PKG"
+                      sleep 1
+                      monkey -p "$CURRENT_PKG" -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1
+                    fi
+                    sleep 1
+                    
+                    # Force stop non whitelisted apps (if enabled)
+                    if [ "$pos_force_stop_user_apps" = "true" ]; then
+                      kill_non_whitelisted_apps "$CURRENT_PKG"
+                    fi
+                fi
+            fi
+}
+Restore() {
+    # --- CPU Restore ---
+    if [ "$pos_cpu_tweak" = "true" ]; then
+        script_ok "$CPU_Restore" && sh "$CPU_Restore" >/dev/null 2>&1 &
+    fi
+
+    # --- GPU Restore ---
+    if [ "$pos_gpu_tweak" = "true" ]; then
+        script_ok "$GPU_Restore" && sh "$GPU_Restore" >/dev/null 2>&1 &
+    fi
+
+    # --- IO Restore ---
+    if [ "$pos_io_tweak" = "true" ]; then
+        script_ok "$IO_Restore" && sh "$IO_Restore" >/dev/null 2>&1 &
+    fi
+
+    # --- Thermal Restore ---
+    if [ "$pos_thermal_tweak" = "true" ]; then
+        script_ok "$Thermal_Restore" && sh "$Thermal_Restore" >/dev/null 2>&1 &
+    fi
+
+    # --- Thermal Disable Restore ---
+    if [ "$pos_force_thermal_disable" = "true" ]; then
+        script_ok "$Thermal_Disable_Restore" && sh "$Thermal_Disable_Restore" >/dev/null 2>&1 &
+    fi
+
+    toast "Default Profile Restored"
+}
+
+Restore_Renderer() {
+# Restore renderer only if switching was enabled
+    if [ "$pos_renderer_switch" = "true" ]; then
+        setprop debug.hwui.renderer opengl
+        cmd graphics reset 2>/dev/null
+    fi
+}
 # ====================================
 # Logcat Method Game Detection
 # Event-Based 0.1% CPU Usage
@@ -223,9 +348,9 @@ logcat -b events -v brief | grep --line-buffered "input_focus" | while read -r l
         IS_GAME=0
     fi
 
-    # ================================
-    # GAME DETECTED
-    # ================================
+# ================================
+# Game Detected
+# ================================
     if [ "$IS_GAME" -eq 1 ]; then
         toast "Game Detected — $CURRENT_PKG"
         RETURNED=0
@@ -238,121 +363,38 @@ logcat -b events -v brief | grep --line-buffered "input_focus" | while read -r l
         fi
 
         if [ "$PREV_IS_GAME" -eq 0 ] && [ "$RETURNED" -eq 0 ]; then
-
-                # --- CPU Performance ---
-                if [ "$pos_cpu_tweak" = "true" ]; then
-                    script_ok "$CPU" && sh "$CPU" >/dev/null 2>&1
-                fi
-
-                # --- GPU Performance ---
-                if [ "$pos_gpu_tweak" = "true" ]; then
-                    script_ok "$GPU" && sh "$GPU" >/dev/null 2>&1
-                fi
-
-                # --- I/O Performance ---
-                if [ "$pos_io_tweak" = "true" ]; then
-                    script_ok "$IO" && sh "$IO" >/dev/null 2>&1
-                fi
-
-                # --- Thermal Performance ---
-                if [ "$pos_thermal_tweak" = "true" ]; then
-                    script_ok "$Thermal" && sh "$Thermal" >/dev/null 2>&1
-                fi
-
-                # --- Thermal Disable ---
-                if [ "$pos_force_thermal_disable" = "true" ]; then
-                    script_ok "$Thermal_Disable" && sh "$Thermal_Disable" >/dev/null 2>&1
-                fi
-
-            sleep 1
-            
-            # -------------------------
-            # Vulkan / Renderer switching
-            # -------------------------
-            if [ "$pos_renderer_switch" = "true" ]; then
-            
-             # Determine pipeline from pos.prop
-            RENDER_PIPELINE="$pos_renderer_switch_pipeline"
-            
-            # Default if empty
-            [ -z "$RENDER_PIPELINE" ] && RENDER_PIPELINE="skiavk"
-
-                if [ "$pos_renderer_switch_individual" = "true" ]; then
-                    # pos_renderer_games must be space-separated list of package names
-                    echo "$pos_renderer_games" | tr ' ' '\n' | grep -qxF "$CURRENT_PKG"
-                    if [ $? -eq 0 ]; then
-                        setprop debug.hwui.renderer "$RENDER_PIPE"
-                    else
-                        setprop debug.hwui.renderer opengl
-                    fi
-                else
-                    # Global renderer switching
-                    setprop debug.hwui.renderer "$RENDER_PIPE"
-                    cmd graphics reset 2>/dev/null
-                    
-                    # Restart game to apply changes
-                    if [ "$pos_renderer_switch" = "true" ] && [ "$pos_renderer_switch_relaunch" = "true" ]; then
-                      am force-stop "$CURRENT_PKG"
-                      sleep 1
-                      monkey -p "$CURRENT_PKG" -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1
-                    fi
-                    sleep 1
-                    
-                    # Force stop non whitelisted apps (if enabled)
-                    if [ "$pos_force_stop_user_apps" = "true" ]; then
-                      kill_non_whitelisted_apps "$CURRENT_PKG"
-                    fi
-                fi
-            fi
+         Renderer
+         Performance
         fi
 
         PREV_IS_GAME=1
             
-    # ================================
-    # Non-Game — Restore after 20s
-    # ================================
-    else
-        if [ "$PREV_IS_GAME" -eq 1 ]; then
-            toast "No game detected — Restoring in 20 seconds..."
+# ================================
+# Non-Game
+# ================================
+else
+    if [ "$PREV_IS_GAME" -eq 1 ]; then
+
+        # Countdown ONLY if renderer switch is enabled
+        if [ "$pos_renderer_switch" = "true" ] && [ "$pos_renderer_switch_relaunch" = "true" ]; then
+            # Timed restore
+            toast "No game detected — Restoring in ${pos_ai_restore_timeout}s..."
+
             (
-                sleep 20
-                
-                # Restore renderer only if switching was enabled
-                if [ "$pos_renderer_switch" = "true" ]; then
-                setprop debug.hwui.renderer opengl
-                cmd graphics reset 2>/dev/null
-                fi
-                
-                # --- CPU Restore ---
-                if [ "$pos_cpu_tweak" = "true" ]; then
-                script_ok "$CPU_Restore" && sh "$CPU_Restore" >/dev/null 2>&1
-                fi
-                
-                # --- GPU Restore ---
-                if [ "$pos_gpu_tweak" = "true" ]; then
-                script_ok "$GPU_Restore" && sh "$GPU_Restore" >/dev/null 2>&1
-                fi
-                
-                # --- IO Restore ---
-                if [ "$pos_io_tweak" = "true" ]; then
-                script_ok "$IO_Restore" && sh "$IO_Restore" >/dev/null 2>&1
-                fi
-                
-                # --- Thermal Restore ---
-                if [ "$pos_thermal_tweak" = "true" ]; then
-                script_ok "$Thermal_Restore" && sh "$Thermal_Restore" >/dev/null 2>&1
-                fi
-                
-                # --- Thermal Disable Restore ---
-                if [ "$pos_force_thermal_disable" = "true" ]; then
-                script_ok "$Thermal_Disable_Restore" && sh "$Thermal_Disable_Restore" >/dev/null 2>&1
-                fi
-                toast "Default Profile Restored"
+                sleep "$pos_ai_restore_timeout"
+                Restore_Renderer
+                Restore
             ) &
             RESTORE_PID=$!
-        fi
 
-        PREV_IS_GAME=0
+        else
+            # Immediate restore IF:
+            #  - pos_renderer_switch=false (ignore relaunch)
+            #  - OR pos_renderer_switch=true but relaunch=false
+            Restore
+        fi
     fi
 
+    PREV_IS_GAME=0
+fi
 done

@@ -19,8 +19,7 @@ IO_Restore="/data/adb/modules/pos/scripts/pos_veux__auto_generated_io.sh"
 Thermal_Restore="/data/adb/modules/pos/scripts/pos_veux__auto_generated_thermal.sh"
 Thermal_Disable_Restore="/data/adb/modules/pos/scripts/pos_veux__auto_generated_thermal_disable.sh"
 User_Apps="/data/adb/modules/pos/scripts/pos_veux__auto_generated_user-apps.sh"
-
-# --- Wait until device fully boot ---
+# --- Wait device to fully boot ---
 sleep 20
 
 # --- Set permissions ---
@@ -33,15 +32,16 @@ chmod 777 "$Thermal_Disable_Restore"
 chmod 777 "$User_Apps"
 chmod 777 "$POS_AI"
 
-# --- Execute Scripts Sequentially ---
-su -c "$CPU_Restore"
-su -c "$GPU_Restore"
-su -c "$IO_Restore"
-su -c "$Thermal_Restore"
-su -c "$Thermal_Disable_Restore"
-su -c "$User_Apps"
-# --- Only proceed when All is done ---
-su -c "$POS_AI"
+# --- Execute Scripts ---
+su -c "
+    $CPU_Restore &
+    $GPU_Restore &
+    $IO_Restore &
+    $Thermal_Restore &
+    $Thermal_Disable_Restore &
+    $User_Apps &
+    $POS_AI &
+"
 
 # --- Exit to prevent further execution ---
 exit 0

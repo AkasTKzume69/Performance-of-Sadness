@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/AkasTKzume69/Performance-of-Sadness/main/banner.png" alt="Performance of Sadness Banner" width="100%">
 </p>
 
-<p align="center">The world’s lightest hard-coded game performance engine. Performance of Sadness AI is an extremely lightweight, event-driven game-assistant engine designed to boost performance when game is detected — and restore system defaults once gaming ends. — all systemlessly installed.</p>
+<p align="center">Meet the world’s unique, mind-blowing shell-based game performance engine: Performance of Sadness AI. It’s an extremely lightweight, event-driven game-assistant designed to boost performance when a game is detected — and restore system defaults once gaming ends — all installed completely systemlessly.</p>
 
 ## Quick Access
 

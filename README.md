@@ -21,14 +21,15 @@
 - **YOU** are choosing to make these modifications, and if you point the finger at me for messing up your device, **I will laugh at you.**
 
 ## ✨ Features Overview
- - Fully editable Performance of Sadness behavior via /sdcard/pos.prop
- - Uses Android’s event-driven logcat channel (input_focus), resulting in near-zero CPU usage (~0.1%)
+ - Fully editable behavior via /sdcard/pos.prop
+ - Uses Android’s event-driven game detection, resulting in near-zero CPU usage (~0.1% extremely lightweight and unnoticeable)
  - Automatically applies game performance profile (CPU, GPU, I/O, thermal, etc.)
- - Dynamically switches to Vulkan renderer for smoother gaming (restores to default after exiting)
+ - Dynamically switches to custom renderer for smoother gaming (restores to default after exiting)
  - Force-stops background user apps (excluding whitelisted apps) to free system resources
  - Auto-generates safe restore scripts to avoid incorrect system restore values
  - Auto-creates an editable whitelist file at first boot (/sdcard/whitelist.prop)
  - Includes a UFS Health Monitor, sending detailed toast notifications
+ - And many more☺️
 
 ## Help & Resources
 

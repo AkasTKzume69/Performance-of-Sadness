@@ -21,7 +21,7 @@
 - **YOU** are choosing to make these modifications, and if you point the finger at me for messing up your device, **I will laugh at you.**
 
 ## ✨ Features Overview
- - Fully editable behavior via /sdcard/pos.prop
+ - Fully editable behavior via /sdcard/pos.prop or /storage/emulated/0/pos.prop
  - Uses Android’s event-driven game detection, resulting in near-zero CPU usage (~0.1% extremely lightweight and unnoticeable)
  - Automatically applies game performance profile (CPU, GPU, I/O, thermal, etc.)
  - Dynamically switches to custom renderer for smoother gaming (restores to default after exiting)

@@ -7,7 +7,7 @@
 ## Quick Access
 
 [![Officially Supported Games](https://img.shields.io/badge/Games-Support-brightgreen)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/main/common/game-list.md)
-[![Changelog](https://img.shields.io/badge/Changelog-Updates-blue)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/common/main/changelog.md)
+[![Changelog](https://img.shields.io/badge/Changelog-Updates-blue)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/main/common/changelog.md)
 [![Installation Guide](https://img.shields.io/badge/Install-Guide-yellow)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/main/common/installation.md)
 [![Whitelist Tutorial](https://img.shields.io/badge/Whitelist-Tutorial-orange)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/main/common/whitelist.md)
 [![Prop Tutorial](https://img.shields.io/badge/Prop-Tutorial-green)](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/main/common/pos_prop.md)

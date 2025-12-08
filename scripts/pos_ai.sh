@@ -15,8 +15,8 @@
 POS_ID="Performance of Sadness"
 POS_ID_AI="Performance of Sadness AI"
 GAME_LIST="/data/adb/modules/pos/scripts/pos-games.zip"
-WHITE_LIST="/sdcard/whitelist.prop"
-POS_PROP="/sdcard/pos.prop"
+WHITE_LIST="/sdcard/POS_Whitelist.prop"
+POS_PROP="/sdcard/POS.prop"
 POS_PROP_FILE="/data/adb/modules/pos/scripts/pos_prop.sh"
 USER_APPS="/data/adb/modules/pos/scripts/user-apps.pos"
 
@@ -83,18 +83,9 @@ while true; do
 done
 
 # Create whitelist if not exists
-create_whitelist() {
-    if [ ! -f "$WHITE_LIST" ]; then
-        echo "# Add your allowed packages here" > "$WHITE_LIST"
-        echo "# No need to reboot" >> "$WHITE_LIST"
-        echo "# Example:" >> "$WHITE_LIST"
-        echo "com.android.systemui" >> "$WHITE_LIST"
-        echo "com.android.launcher3" >> "$WHITE_LIST"
-        echo "com.android.settings" >> "$WHITE_LIST"
-        echo "com.rifsxd.ksunext" >> "$WHITE_LIST"
-    fi
-}
-create_whitelist
+if [ ! -f "$WHITE_LIST" ]; then
+    sh "$WHITE_LIST"
+fi
 
 # Create pos.prop if not exists
 if [ ! -f "$POS_PROP" ]; then
@@ -172,10 +163,10 @@ if [ "$pos_force_thermal_disable" = "true" ]; then
 fi
 
 # If whitelist from prop is enabled, point WHITE_LIST to the configured location
-if [ "$pos_whitelist_prop" = "true" ] || [ "$pos_whitelist_prop" = "True" ]; then
+if [ "$pos_whitelist_prop" = "true" ]; then
     WLLOC="$pos_whitelist_prop_location"
     [ -z "$WLLOC" ] && WLLOC="/sdcard"
-    WHITE_LIST="${WLLOC%/}/whitelist.prop"
+    WHITE_LIST="${WLLOC%/}/POS_Whitelist.prop"
 fi
 
 # ====================================

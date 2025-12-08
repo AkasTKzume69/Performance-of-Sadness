@@ -5,7 +5,7 @@ V1-20251208 (December 08 2025)
 </h3>
 
 ### Module
-* [Service] Don't multiple call <code>su</code>
+* [Service] Don't call multiple <code>su</code> to execute all scripts
 * [Service] Wait until device fully boots
 * [Service] Execute all auto generated restore scripts
 * [Service] Execute auto detect user apps

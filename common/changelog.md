@@ -1,6 +1,10 @@
+</strong>
+<h4>
 <strong>
 V1-20251208 (December 08 2025)
 </strong>
+</h5>
+<h4>
 
 * [Service] Don't call multiple <code>su</code> to execute all scripts
 * [Service] Wait until device fully boots
@@ -25,11 +29,11 @@ V1-20251208 (December 08 2025)
 * [CPU] Read CPU configuration first before continue
 * [CPU] Add default fallback
 * [CPU] Separate Little and Big cluster
-* [CPU] Add Governor, Min/Max Frequency, Hispeedload, Boost, Boostpulse both policy 0 and policy 6
+* [CPU] Add <code>governor</code>, <code>min/max</code> frequency, <code>hispeed_freq</code>, <code>hispeed_load</code>, <code>boost</code>, <code>boostpulse</code> both <code>policy 0</code> and <code>policy 6</code>
 * [CPU] Make sure all cores are online
 * [CPU] Exit to prevent further execution
 * [GPU] Use legacy tweak for now
-* [GPU] Force Clock, Bus, Rail, and No-nap on
+* [GPU] Force <code>clock</code>, <code>bus</code>, <code>rail</code>, and <code>nonap</code> on
 * [GPU] Lock GPU and Devfreq at max frequency
 * [GPU] Set min, max, and default power level to maximum performance
 * [GPU] Ensure thermal logic cannot override the power level
@@ -41,3 +45,15 @@ V1-20251208 (December 08 2025)
 * [GPU] Enable Bus Split
 * [GPU] Disable HWCG
 * [GPU] Exit to prevent further execution
+* [IO] Use legacy tweak for now
+* [IO] Ignore loop and zram
+* [IO] Set <code>read-ahead</code> to 1024
+* [IO] Set <code>nr-request</code> to 256
+* [IO] Set <code>nomerges</code> to 2
+* [IO] Set <code>iostats</code> to 0
+* [IO] Set <code>add_random</code> to 0
+* [IO] Exit to prevent further execution
+* [Thermal] Kill user-space thermal
+* [Thermal] Use custom throttle on configurations
+* [Thermal-Disable] Disable thermal using <code>mode</code>
+* [Thermal-Disable] Include only CPU <code>usr</code>, <code>step</code>, <code>touch</code> zones

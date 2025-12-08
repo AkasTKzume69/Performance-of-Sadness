@@ -30,5 +30,14 @@ V1-20251208 (December 08 2025)
 * [CPU] Exit to prevent further execution
 * [GPU] Use legacy tweak for now
 * [GPU] Force Clock, Bus, Rail, and No-nap on
-* [GPU] Lock GPU at max frequency
-* [GPU] 
+* [GPU] Lock GPU and Devfreq at max frequency
+* [GPU] Set min, max, and default power level to maximum performance
+* [GPU] Ensure thermal logic cannot override the power level
+* [GPU] Enable L3 Cache Boost
+* [GPU] Disable all GPU Idle/Sleep
+* [GPU] Keep GPU Active
+* [GPU] Relax FT Policy for extreme FPS
+* [GPU] Force immediate preempt mode
+* [GPU] Enable Bus Split
+* [GPU] Disable HWCG
+* [GPU] Exit to prevent further execution

@@ -1,16 +1,11 @@
-<h3>
 <strong>
 V1-20251208 (December 08 2025)
 </strong>
-</h3>
 
-### Module
 * [Service] Don't call multiple <code>su</code> to execute all scripts
 * [Service] Wait until device fully boots
 * [Service] Execute all auto generated restore scripts
 * [Service] Execute auto detect user apps
-
-### Performance of Sadness
 * [AI] Add UFS Health Checker every boot
 * [AI] Add CPU, GPU, IO, Thermal, Thermal Disable, Renderer Switch and Kill User-apps
 * [AI] Make sure user must unlock the keyguard before proceed
@@ -26,3 +21,14 @@ V1-20251208 (December 08 2025)
 * [AI] Use monkey -p to relaunch the current game
 * [AI] Make sure all configurations before run the scripts
 * [AI] Create POS_Whitelist.prop and POS.prop if not exist
+* [CPU] Add policy 0 and policy 6
+* [CPU] Read CPU configuration first before continue
+* [CPU] Add default fallback
+* [CPU] Separate Little and Big cluster
+* [CPU] Add Governor, Min/Max Frequency, Hispeedload, Boost, Boostpulse both policy 0 and policy 6
+* [CPU] Make sure all cores are online
+* [CPU] Exit to prevent further execution
+* [GPU] Use legacy tweak for now
+* [GPU] Force Clock, Bus, Rail, and No-nap on
+* [GPU] Lock GPU at max frequency
+* [GPU] 

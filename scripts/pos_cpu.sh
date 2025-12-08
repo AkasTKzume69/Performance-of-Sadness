@@ -16,7 +16,7 @@ CPU="/sys/devices/system/cpu"
 CPUP="/sys/devices/system/cpu/cpufreq"
 POL0="$CPUP/policy0"
 POL6="$CPUP/policy6"
-PROP="/sdcard/pos.prop"
+PROP="/sdcard/POS.prop"
 
 # ====================================
 # Trim helper
@@ -26,7 +26,7 @@ _trim() {
 }
 
 # ====================================
-# Load CPU Tweaks From pos.prop (Fast Method)
+# Load CPU Tweaks From POS.prop (Fast Method)
 # ====================================
 
 MIN_L=""

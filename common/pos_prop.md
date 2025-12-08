@@ -27,5 +27,5 @@ or
 
 ### Step 4: Save the file
 
-If labeled 🟢 = No need to reboot
-If labeled 🔴 = Reboot needed
+* If labeled 🟢 = No need to reboot
+* If labeled 🔴 = Reboot needed

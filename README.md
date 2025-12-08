@@ -21,13 +21,13 @@
 - **YOU** are choosing to make these modifications, and if you point the finger at me for messing up your device, **I will laugh at you.**
 
 ## ✨ Features Overview
- - Fully editable behavior via /sdcard/pos.prop or /storage/emulated/0/pos.prop
+ - Fully editable behavior via /sdcard/POS.prop or /storage/emulated/0/POS.prop
  - Uses Android’s event-driven game detection, resulting in near-zero CPU usage (~0.1% extremely lightweight and unnoticeable)
  - Automatically applies game performance profile (CPU, GPU, I/O, thermal, etc.)
  - Dynamically switches to custom renderer for smoother gaming (restores to default after exiting)
  - Force-stops background user apps (excluding whitelisted apps) to free system resources
  - Auto-generates safe restore scripts to avoid incorrect system restore values
- - Auto-creates an editable whitelist file at first boot (/sdcard/whitelist.prop)
+ - Auto-creates an editable whitelist file at first boot (/sdcard/POS_Whitelist.prop)
  - Includes a UFS Health Monitor, sending detailed toast notifications
  - Fully based on Device Firmware
  - And many more☺️
@@ -36,9 +36,9 @@
 
 Found a bug? Report it in our [Support Group](https://t.me/AkasTKzumeOFFICIAL)
 
-Learn how to exclude package names in `/sdcard/whitelist.prop`: [Whitelist Tutorial](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/main/common/whitelist.md)
+Learn how to exclude package names in `/sdcard/POS_Whitelist.prop`: [Whitelist Tutorial](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/main/common/whitelist.md)
 
-Learn how to modify Performance of Sadness behavior in `/sdcard/pos.prop`: [POS Prop Tutorial](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/main/common/pos_prop.md)
+Learn how to modify Performance of Sadness behavior in `/sdcard/POS.prop`: [POS Prop Tutorial](https://github.com/AkasTKzume69/Performance-of-Sadness/blob/main/common/pos_prop.md)
 
 ## 📝 IMPORTANT NOTE
 

@@ -15,7 +15,8 @@
 POS_ID="Performance of Sadness"
 POS_ID_AI="Performance of Sadness AI"
 GAME_LIST="/data/adb/modules/pos/scripts/pos-games.zip"
-WHITE_LIST="/sdcard/POS_Whitelist.prop"
+WHITELIST="/sdcard/POS_Whitelist.prop"
+WHITELIST_PROP_FILE="/data/adb/modules/pos/scripts/pos_whitelist_prop.sh"
 POS_PROP="/sdcard/POS.prop"
 POS_PROP_FILE="/data/adb/modules/pos/scripts/pos_prop.sh"
 USER_APPS="/data/adb/modules/pos/scripts/user-apps.pos"
@@ -58,21 +59,20 @@ script_ok() {
 }
 
 # ====================================
-# Wait Until User Unlocks Screen
+# Wait until user unlock the device
 # ====================================
 is_locked() {
     local ks
     ks=$(dumpsys activity | grep -E "isKeyguardShowing|mKeyguardShowing" | head -n 2)
     echo "$ks" | grep -q "=true"
 }
-toast "🔓 Device locked! Please unlock your device to load the scripts!"
 
 # --- Main Loop ---
-last_state="unknown"
 while true; do
     if is_locked; then
         if [ "$last_state" != "locked" ]; then
             last_state="locked"
+            toast "Device Locked!🔒 Please unlock your device to continue!"
         fi
     else
         if [ "$last_state" != "unlocked" ]; then
@@ -82,12 +82,10 @@ while true; do
     fi
 done
 
-# Create whitelist if not exists
-if [ ! -f "$WHITE_LIST" ]; then
-    sh "$WHITE_LIST"
-fi
-
-# Create pos.prop if not exists
+# ====================================
+# POS Prop
+# ====================================
+# --- Create POS Prop if not exists ---
 if [ ! -f "$POS_PROP" ]; then
     sh "$POS_PROP_FILE"
 fi
@@ -99,7 +97,7 @@ _trim() {
     echo "$var"
 }
 
-# Read pos.prop if present
+# --- Read POS Prop if present ---
 if [ -f "$POS_PROP" ]; then
     while IFS= read -r line || [ -n "$line" ]; do
         # Remove leading/trailing spaces
@@ -141,7 +139,6 @@ if [ -f "$POS_PROP" ]; then
             pos_force_thermal_disable) pos_force_thermal_disable="$value" ;;
             pos_force_stop_user_apps) pos_force_stop_user_apps="$value" ;;
             pos_whitelist_prop) pos_whitelist_prop="$value" ;;
-            pos_whitelist_prop_location) pos_whitelist_prop_location="$value" ;;
             pos_renderer_switch) pos_renderer_switch="$value" ;;
             pos_renderer_switch_pipeline) pos_renderer_switch_pipeline="$value" ;;
             pos_renderer_switch_individual) pos_renderer_switch_individual="$value" ;;
@@ -157,16 +154,17 @@ fi
 # ====================================
 # Thermal Logic Prop — Prevent Conflict
 # ====================================
-# Priority: Thermal Disable overrides Thermal Tweak
+# --- Priority: Thermal Disable overrides Thermal Tweak ---
 if [ "$pos_force_thermal_disable" = "true" ]; then
     pos_thermal_tweak="false"
 fi
 
-# If whitelist from prop is enabled, point WHITE_LIST to the configured location
-if [ "$pos_whitelist_prop" = "true" ]; then
-    WLLOC="$pos_whitelist_prop_location"
-    [ -z "$WLLOC" ] && WLLOC="/sdcard"
-    WHITE_LIST="${WLLOC%/}/POS_Whitelist.prop"
+# ====================================
+# Whitelist
+# ====================================
+# --- Create Whitelist Prop if not exists ---
+if [ ! -f "$WHITELIST" ]; then
+    sh "$WHITELIST_PROP_FILE"
 fi
 
 # ====================================
@@ -204,7 +202,7 @@ toast "Hello! I'm $POS_ID_AI☺️ your game assistant!"
 kill_non_whitelisted_apps() {
     local game_pkg="$1"
     # read whitelist lines safely
-    WL=$(cat "$WHITE_LIST" 2>/dev/null || echo "")
+    WL=$(cat "$WHITELIST" 2>/dev/null || echo "")
     # avoid word-splitting of user apps: read line by line
     if [ -f "$USER_APPS" ]; then
         while IFS= read -r pkg || [ -n "$pkg" ]; do
@@ -266,7 +264,6 @@ Renderer() {
                 else
                     # Global renderer switching
                     setprop debug.hwui.renderer "$RENDER_PIPELINE"
-                    cmd graphics reset 2>/dev/null
                     
                     # Restart game to apply changes
                     if [ "$pos_renderer_switch" = "true" ] && [ "$pos_renderer_switch_relaunch" = "true" ]; then
@@ -316,7 +313,6 @@ Restore_Renderer() {
 # Restore renderer only if switching was enabled
     if [ "$pos_renderer_switch" = "true" ]; then
         setprop debug.hwui.renderer opengl
-        cmd graphics reset 2>/dev/null
     fi
 }
 # ====================================

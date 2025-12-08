@@ -6,9 +6,10 @@ V1-20251208 (December 08 2025)
 </h5>
 <h4>
 
+* [Module] Separate scripts to avoid conflicts
 * [Service] Don't call multiple <code>su</code> to execute all scripts
 * [Service] Wait until device fully boots
-* [Service] Execute all auto generated restore scripts
+* [Service] Execute all dynamic auto generated restore scripts
 * [Service] Execute auto detect user apps
 * [AI] Add UFS Health Checker every boot
 * [AI] Add CPU, GPU, IO, Thermal, Thermal Disable, Renderer Switch and Kill User-apps

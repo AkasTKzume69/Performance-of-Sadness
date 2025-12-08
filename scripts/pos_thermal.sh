@@ -14,7 +14,7 @@
 # ====================================
 CPU_PATH="/sys/devices/system/cpu"
 THERM="/sys/class/thermal/thermal_zone16/temp"
-PROP_FILE="/sdcard/pos.prop"
+PROP_FILE="/sdcard/POS.prop"
 
 # ====================================
 # Cluster Frequencies

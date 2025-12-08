@@ -163,8 +163,10 @@ fi
 # Whitelist
 # ====================================
 # --- Create Whitelist Prop if not exists ---
-if [ ! -f "$WHITELIST" ]; then
-    sh "$WHITELIST_PROP_FILE"
+if [ "$pos_force_stop_user_apps" = "true" ]; then
+   if [ ! -f "$WHITELIST" ]; then
+     sh "$WHITELIST_PROP_FILE"
+   fi
 fi
 
 # ====================================

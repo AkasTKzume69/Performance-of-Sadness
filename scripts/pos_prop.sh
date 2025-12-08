@@ -12,7 +12,7 @@
 # ====================================
 # Main Variables
 # ====================================
-POS_PROP="/sdcard/pos.prop"
+POS_PROP="/sdcard/POS.prop"
 
 # ====================================
 # Create if pos.prop does not exist
@@ -72,8 +72,8 @@ echo "# ====================================" >> "$POS_PROP"
 echo "" >> "$POS_PROP"
 echo "# ====================================" >> "$POS_PROP"
 echo "# 🔴Whitelist settings" >> "$POS_PROP"
+echo "# Only works if pos_force_stop_user_apps=true" >> "$POS_PROP"
 echo "pos_whitelist_prop=true" >> "$POS_PROP"
-echo "pos_whitelist_prop_location=/sdcard" >> "$POS_PROP"
 echo "# ====================================" >> "$POS_PROP"
 echo "" >> "$POS_PROP"
 echo "# ====================================" >> "$POS_PROP"
@@ -96,18 +96,6 @@ echo "# Only works if pos_renderer_switch_individual=true" >> "$POS_PROP"
 echo "# Example:" >> "$POS_PROP"
 echo "# pos_renderer_games=com.mobile.legends com.garena.game.codm com.roblox.client" >> "$POS_PROP"
 echo "pos_renderer_games=" >> "$POS_PROP"
-echo "" >> "$POS_PROP"
-echo "" >> "$POS_PROP"
-echo "" >> "$POS_PROP"
-echo "" >> "$POS_PROP"
-echo "" >> "$POS_PROP"
-echo "" >> "$POS_PROP"
-echo "" >> "$POS_PROP"
-echo "" >> "$POS_PROP"
-echo "" >> "$POS_PROP"
-echo "" >> "$POS_PROP"
-echo "" >> "$POS_PROP"
-echo "" >> "$POS_PROP"
 echo "" >> "$POS_PROP"
 echo "" >> "$POS_PROP"
 echo "" >> "$POS_PROP"

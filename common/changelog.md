@@ -1,10 +1,13 @@
+<strong>
+Upcoming Update
 </strong>
-<h4>
+
+* [Module] Fix error installing on Magisk
+* 
+
 <strong>
 V1-20251208 (December 08 2025)
 </strong>
-</h5>
-<h4>
 
 * [Module] Separate scripts to avoid conflicts
 * [Service] Don't call multiple <code>su</code> to execute all scripts

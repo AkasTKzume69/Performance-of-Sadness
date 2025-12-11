@@ -3,7 +3,12 @@ Upcoming Update
 </strong>
 
 * [Module] Fix error installing on Magisk
-* 
+* [CPU] Use non-legacy tweaks
+* [CPU] Remove default fallbacks
+* [CPU] Add allow RT tasks to use CPU indefinitely
+* [CPU] Add lowers latency for multiple competing RT tasks
+* [CPU] Add Disable Energy-Aware Scheduling
+* [CPU] Add Let child processes run immediately after forking
 
 <strong>
 V1-20251208 (December 08 2025)
@@ -29,6 +34,7 @@ V1-20251208 (December 08 2025)
 * [AI] Use monkey -p to relaunch the current game
 * [AI] Make sure all configurations before run the scripts
 * [AI] Create POS_Whitelist.prop and POS.prop if not exist
+* [CPU] Use legacy tweaks for now
 * [CPU] Add policy 0 and policy 6
 * [CPU] Read CPU configuration first before continue
 * [CPU] Add default fallback

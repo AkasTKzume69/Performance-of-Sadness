@@ -4,11 +4,26 @@ Upcoming Update
 
 * [Module] Fix error installing on Magisk
 * [CPU] Use non-legacy tweaks
-* [CPU] Remove default fallbacks
 * [CPU] Add allow RT tasks to use CPU indefinitely
 * [CPU] Add lowers latency for multiple competing RT tasks
 * [CPU] Add Disable Energy-Aware Scheduling
 * [CPU] Add Let child processes run immediately after forking
+* [GPU] Use non-legacy tweaks
+* [GPU] Add force GPU awake
+* [GPU] Add GPU Frequency and Devfreq capping 
+* [GPU] Add <code>min</code>, <code>max</code>, <code>thermal</code> pwrlevel
+* [GPU] Add L3 cache boost
+* [GPU] Add disable all GPU Idle / Sleep
+* [GPU] Add GPU keep active
+* [GPU] Add relax FT policy for extreme FPS
+* [GPU] Add force immediate preempt mode
+* [GPU] Add disable <code>HWCG</code>
+* [I/O] Use non-legacy tweaks
+* [I/O] Add <code>read_ahead_kb</code>
+* [I/O] Add <code>nr_requests</code>
+* [I/O] Add <code>nomerges</code>
+* [I/O] Add <code>iostats</code>
+* [I/O] Add <code>add_random</code>
 
 <strong>
 V1-20251208 (December 08 2025)
@@ -55,14 +70,14 @@ V1-20251208 (December 08 2025)
 * [GPU] Enable Bus Split
 * [GPU] Disable HWCG
 * [GPU] Exit to prevent further execution
-* [IO] Use legacy tweak for now
-* [IO] Ignore loop and zram
-* [IO] Set <code>read-ahead</code> to 1024
-* [IO] Set <code>nr-request</code> to 256
-* [IO] Set <code>nomerges</code> to 2
-* [IO] Set <code>iostats</code> to 0
-* [IO] Set <code>add_random</code> to 0
-* [IO] Exit to prevent further execution
+* [I/O] Use legacy tweak for now
+* [I/O] Ignore loop and zram
+* [I/O] Set <code>read-ahead</code> to 1024
+* [I/O] Set <code>nr-request</code> to 256
+* [I/O] Set <code>nomerges</code> to 2
+* [I/O] Set <code>iostats</code> to 0
+* [I/O] Set <code>add_random</code> to 0
+* [I/O] Exit to prevent further execution
 * [Thermal] Kill user-space thermal
 * [Thermal] Use custom throttle on configurations
 * [Thermal-Disable] Disable thermal using <code>mode</code>
